@@ -3,6 +3,7 @@ package sheldon.sanjiaodi.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 
 import com.daimajia.swipe.util.Attributes;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +39,11 @@ public class FirstFragment extends BaseFragment {
     @Override
     protected View initView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_first, null);
-
+        File file1 = new File(getContext().getFilesDir(), "getFilesDir.txt");
+        Log.d("TAG", "file1=" + file1.getAbsolutePath());
         ptrFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.ptr_frame);
         ptrFrameLayout.disableWhenHorizontalMove(true);
+        ptrFrameLayout.setResistance(2.8f);
         listView = (ListView) view.findViewById(R.id.list_view);
 
         final LoadMoreListViewContainer loadMoreListViewContainer = (LoadMoreListViewContainer) view.findViewById(R.id.load_more_list_view_container);

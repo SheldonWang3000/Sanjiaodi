@@ -14,7 +14,7 @@
         android:id="@+id/icon"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@mipmap/wall"
+        android:src="@mipmap/image_default"
         app:civ_border_width="2dp"
         app:civ_border_color="#FF000000"/>
 
@@ -24,7 +24,15 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:clickable="true"
-        android:src="@mipmap/flower"
         android:scaleType="fitCenter" />
+    <ImageView
+        android:id="@+id/image_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:scaleType="fitCenter"
+        android:layout_below="@+id/image_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

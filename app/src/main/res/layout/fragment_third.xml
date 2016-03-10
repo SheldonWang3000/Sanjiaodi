@@ -12,5 +12,34 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello3"/>
+        android:text="Hello3"
+        android:id="@+id/textView" />
+    <Button
+        android:id="@+id/button_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get button"
+        android:textAllCaps="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="79dp" />
+    <Button
+        android:id="@+id/button_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get button"
+        android:textAllCaps="false"
+        android:layout_alignTop="@+id/button_get"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginRight="45dp"
+        android:layout_marginEnd="45dp" />
+    <include
+        layout="@layout/process"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

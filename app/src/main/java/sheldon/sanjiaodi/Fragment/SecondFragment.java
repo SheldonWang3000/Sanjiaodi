@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import sheldon.sanjiaodi.BaseFragment;
 import sheldon.sanjiaodi.ImageActivity;
+import sheldon.sanjiaodi.MyVolley;
 import sheldon.sanjiaodi.R;
 
 /**
@@ -16,19 +17,16 @@ import sheldon.sanjiaodi.R;
 public class SecondFragment extends BaseFragment {
 
 
+    private ImageView imageView;
+    private ImageView imageView2;
+
     @Override
     protected View initView(LayoutInflater inflater) {
         // TODO Auto-generated method stub
         View view = inflater.inflate(R.layout.fragment_second, null);
-        ImageView imageView = ((ImageView) view.findViewById(R.id.image_view));
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent();
-                i.setClass(getContext(), ImageActivity.class);
-                startActivity(i);
-            }
-        });
+        imageView = ((ImageView) view.findViewById(R.id.image_view));
+        imageView2 = ((ImageView) view.findViewById(R.id.image_view2));
+
         return view;
     }
 
@@ -39,8 +37,17 @@ public class SecondFragment extends BaseFragment {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setClass(getContext(), ImageActivity.class);
+                startActivity(i);
+            }
+        });
 
+        String url = "http://ww2.sinaimg.cn/bmiddle/9c079b04gw1f1qjtatuwxj20m80gojsn.jpg";
+        MyVolley.getInstance(getContext()).getImage(imageView, url, null);
     }
 
     @Override

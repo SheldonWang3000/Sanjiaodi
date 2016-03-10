@@ -1,1 +1,1 @@
-include ':app', ':SlidingMenu', ':SwipeLayout'
+include ':app', ':SlidingMenu', ':SwipeLayout', ':Volley'
