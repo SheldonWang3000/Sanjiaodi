@@ -1,13 +1,21 @@
 package sheldon.sanjiaodi;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +26,7 @@ import sheldon.sanjiaodi.Fragment.SearchFragment;
 import sheldon.sanjiaodi.Fragment.SecondFragment;
 import sheldon.sanjiaodi.Fragment.ThirdFragment;
 
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends SlidingFragmentActivity implements View.OnClickListener {
 
     private SlidingMenu slidingMenu;
 
@@ -40,9 +48,43 @@ public class MainActivity extends SlidingFragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Window window = this.getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.pku_red));
+        }
+
+
         slidingMenu = getSlidingMenu();
+        String str = "" + checkDeviceHasNavigationBar(this);
+        SJDLog.d("navigationbar", str);
+
         setContentView(R.layout.fragment_main_content);
         setBehindContentView(R.layout.fragment_sliding_menu);
+
+        final LinearLayout view = (LinearLayout) findViewById(R.id.navigation_bottom);
+        ViewTreeObserver observer = view.getViewTreeObserver();
+        observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                if (checkDeviceHasNavigationBar(getApplicationContext())) {
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
+//                    float height = getApplicationContext().getResources().getDisplayMetrics().density * 48 + 0.5f;
+                    float height = getNavigationBarHeight(getApplicationContext());
+                    params.height = (int)(height);
+                    view.setLayoutParams(params);
+                }
+
+                return true;
+            }
+        });
+//        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
+//        params.height = 48;
+//        view.setLayoutParams(params);
+
 
         radioGroup = (RadioGroup) findViewById(R.id.bottom_button_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -120,11 +162,54 @@ public class MainActivity extends SlidingFragmentActivity {
         radioGroup.setVisibility(View.GONE);
     }
 
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         getSupportFragmentManager().putFragment(outState, "save", content);
     }
 
+    private boolean checkDeviceHasNavigationBar(Context context) {
+
+        boolean hasNavigationBar = false;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (id > 0) {
+            hasNavigationBar = rs.getBoolean(id);
+        }
+        try {
+            Class systemPropertiesClass = Class.forName("android.os.SystemProperties");
+            Method m = systemPropertiesClass.getMethod("get", String.class);
+            String navBarOverride = (String) m.invoke(systemPropertiesClass, "qemu.hw.mainkeys");
+            if ("1".equals(navBarOverride)) {
+                hasNavigationBar = false;
+            } else if ("0".equals(navBarOverride)) {
+                hasNavigationBar = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return hasNavigationBar;
+    }
+
+    private int getNavigationBarHeight(Context context) {
+        int navigationBarHeight = 0;
+        Resources rs = context.getResources();
+        int id = rs.getIdentifier("navigation_bar_height", "dimen", "android");
+        if (id > 0 && checkDeviceHasNavigationBar(context)) {
+            navigationBarHeight = rs.getDimensionPixelSize(id);
+        }
+        return navigationBarHeight;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.menu_button:
+                SJDLog.i("click", "menu");
+                slidingMenu.toggle();
+                break;
+        }
+    }
 }

@@ -1,11 +1,11 @@
 package sheldon.sanjiaodi.Fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import sheldon.sanjiaodi.R;
 
-public class ContentActivity extends AppCompatActivity {
+public class ContentActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

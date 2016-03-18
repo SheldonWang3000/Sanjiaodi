@@ -14,16 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
-        android:layout_above="@+id/navigation_header_container"
-        android:background="@android:color/white"  >
+        android:layout_above="@+id/navigation_bottom"
+        android:background="@color/bottom_gray"  >
         <RadioButton
             android:id="@+id/bottom_button_0"
             android:checked="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:text="@string/bottom_button_0_text"
-            android:textColor="@android:color/black"
+            style="@style/radio_text"
             android:button="@null"
             android:gravity="center"
             android:drawableTop="@drawable/selector_bottom_button_0"
@@ -34,8 +35,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:text="@string/bottom_button_1_text"
-            android:textColor="@android:color/black"
+            style="@style/radio_text"
             android:button="@null"
             android:gravity="center"
             android:drawableTop="@drawable/selector_bottom_button_1"
@@ -46,8 +48,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:text="@string/bottom_button_2_text"
-            android:textColor="@android:color/black"
+            style="@style/radio_text"
             android:button="@null"
             android:gravity="center"
             android:drawableTop="@drawable/selector_bottom_button_2"
@@ -58,20 +61,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_gravity="center_vertical"
             android:button="@null"
             android:text="@string/bottom_button_3_text"
-            android:textColor="@android:color/black"
+            style="@style/radio_text"
             android:gravity="center"
             android:drawableTop="@drawable/selector_bottom_button_3"
             />
     </RadioGroup>
     <LinearLayout
-        android:id="@+id/navigation_header_container"
+        android:id="@+id/navigation_bottom"
         android:orientation="vertical"
         android:background="@android:color/holo_red_light"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="48dp">
+        android:layout_height="0dp">
 
     </LinearLayout>
 </RelativeLayout>

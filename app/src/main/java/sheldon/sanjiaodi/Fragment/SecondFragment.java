@@ -37,16 +37,18 @@ public class SecondFragment extends BaseFragment {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
+        final String url = "http://ww2.sinaimg.cn/bmiddle/9c079b04gw1f1qjtatuwxj20m80gojsn.jpg";
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
+                i.putExtra("url", "http://sabrinadepestre.com/wp-content/uploads/2016/02/space-wallpaper-29.jpg");
+//                i.putExtra("resource", R.mipmap.flower);
                 i.setClass(getContext(), ImageActivity.class);
                 startActivity(i);
             }
         });
 
-        String url = "http://ww2.sinaimg.cn/bmiddle/9c079b04gw1f1qjtatuwxj20m80gojsn.jpg";
         MyVolley.getInstance(getContext()).getImage(imageView, url, null);
     }
 

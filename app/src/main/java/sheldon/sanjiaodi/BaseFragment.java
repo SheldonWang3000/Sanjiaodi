@@ -10,18 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 public abstract class BaseFragment extends Fragment {
     protected Context context;
-    protected SlidingMenu slidingMenu;
     public View rootView;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
-        slidingMenu = ((MainActivity) getActivity()).getSlidingMenu();
         initData(savedInstanceState);
     }
 

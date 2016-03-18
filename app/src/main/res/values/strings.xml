@@ -13,8 +13,34 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="bottom_button_0_text">button0</string>
-    <string name="bottom_button_1_text">button1</string>
-    <string name="bottom_button_2_text">button2</string>
-    <string name="bottom_button_3_text">button3</string>
+    <string name="bottom_button_0_text">活动</string>
+    <string name="bottom_button_1_text">收藏</string>
+    <string name="bottom_button_2_text">常用</string>
+    <string name="bottom_button_3_text">我的</string>
+    <string name="third_title">常用信息</string>
+    <string name="info_shopping_text">生活服务</string>
+    <string name="info_house_text">住宿服务</string>
+    <string name="info_education_text">教学楼</string>
+    <string name="info_sports_text">运动设施</string>
+    <string name="info_layout_0_text">校园生活</string>
+    <string name="info_layout_1_text">校园交通</string>
+    <string name="info_bus_text">公交车</string>
+    <string name="info_station_text">公交站</string>
+    <string name="info_taxi_text">出租车</string>
+    <string name="info_metro_text">地铁信息</string>
+    <string name="info_bank_text">银行信息</string>
+    <string name="info_hospital_text">医疗信息</string>
+    <string name="info_phone_text">服务信息</string>
+    <string name="blank_text" />
+    <string name="info_layout_2_text">校园服务</string>
+    <string name="info_layout_3_text">校园地图</string>
+    <string name="info_pku_text">北大校区</string>
+    <string name="info_education_center_text">深圳大学城</string>
+    <string name="info_metro_sz_text">深圳地铁</string>
+    <string name="info_metro_hk_text">香港地铁</string>
+    <string name="info_shopping_title">生活服务</string>
+    <string name="info_shopping_tab_eat">餐饮</string>
+    <string name="info_shopping_tab_shop">购物</string>
+    <string name="info_shopping_tab_express">快递</string>
+    <string name="info_shopping_tab_cash">取款</string>
 </resources>
