@@ -17,7 +17,7 @@ import sheldon.sanjiaodi.SJDLog;
 
 public class ShoppingActivity extends FragmentActivity implements View.OnClickListener{
 
-    private Fragment content;
+    private Fragment content = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +35,10 @@ public class ShoppingActivity extends FragmentActivity implements View.OnClickLi
         }
 
         if (savedInstanceState == null) {
-            content = new ShoppingEatFragment();
+            switchContent(new ShoppingEatFragment());
         }
         else {
-            content = (Fragment)savedInstanceState.get("save");
+            switchContent((Fragment)savedInstanceState.get("save"));
         }
 
         findViewById(R.id.info_shopping_eat).setOnClickListener(this);
@@ -47,13 +47,13 @@ public class ShoppingActivity extends FragmentActivity implements View.OnClickLi
         findViewById(R.id.info_shopping_cash).setOnClickListener(this);
         findViewById(R.id.back_button).setOnClickListener(this);
 
-        switchContent(content);
-
     }
 
     public void switchContent(Fragment fragment) {
-        content = fragment;
-        getSupportFragmentManager().beginTransaction().replace(R.id.info_shopping_fragment_content, content).commit();
+        if (content == null || !content.equals(fragment)) {
+            content = fragment;
+            getSupportFragmentManager().beginTransaction().replace(R.id.info_shopping_fragment_content, content).commit();
+        }
     }
 
     @Override

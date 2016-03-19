@@ -3,6 +3,7 @@
     package="sheldon.sanjiaodi">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -28,6 +29,9 @@
         <activity android:name=".Fragment.ContentActivity" />
         <activity android:name=".ImageActivity" />
         <activity android:name=".InfoActivity.ShoppingActivity" />
+        <activity android:name=".InfoActivity.InfoSampleActivity" />
+        <activity android:name=".InfoActivity.OfficeActivity" />
+        <activity android:name=".InfoActivity.MetroActivity" />
     </application>
 
 </manifest>

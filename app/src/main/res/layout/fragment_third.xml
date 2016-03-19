@@ -196,7 +196,7 @@
                     android:src="@mipmap/info_hospital"
                     android:clickable="true"/>
                 <ImageView
-                    android:id="@+id/info_phone"
+                    android:id="@+id/info_office"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/info_icon_height"
                     android:layout_weight="1"

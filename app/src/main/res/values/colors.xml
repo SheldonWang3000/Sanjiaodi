@@ -9,6 +9,6 @@
     <color name="header_text_color">#ffffff</color>
     <color name="bottom_gray">#e1e1e1</color>
     <color name="loading_background">#636363</color>
-    <color name="background_gray">#d1d1d1</color>
+    <color name="background_gray">#ececec</color>
     <color name="radio_selected">#6ab393</color>
 </resources>

@@ -13,6 +13,7 @@ import sheldon.sanjiaodi.R;
 public class ShoppingEatFragment extends BaseFragment{
     @Override
     protected View initView(LayoutInflater inflater) {
+//        View view = inflater.inflate(R.layout.fragment_shopping_eat, null);
         View view = inflater.inflate(R.layout.fragment_shopping_eat, null);
         return view;
     }

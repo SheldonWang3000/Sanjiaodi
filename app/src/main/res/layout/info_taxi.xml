@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/background_gray"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/header_back"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        style="@style/info_sample_layout" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/info_title_black"
+            android:text="出租车"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/info_content"
+            android:text="本地区大部分出租车为红色出租车， 起步价 10 元 2 公里，超过 2 公里，每公里 2 元。候车费 0.8 元/分钟。每天 6 时至 23 时，加收 30%附加费。燃油附加费： 3 元。此外，由于大学城位置较偏远， 出租车较少，可以使用 Uber 或滴滴快车，方便快捷。"/>
+    </LinearLayout>
+
+</LinearLayout>

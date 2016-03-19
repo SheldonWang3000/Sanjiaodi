@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray">
+    <include layout="@layout/header_back"/>
+    <RadioGroup
+        android:id="@+id/info_office_tab"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/header_back"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/info_office"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:checked="true"
+            style="@style/info_fragment_tab"
+            android:text="@string/info_office_text"/>
+        <RadioButton
+            android:id="@+id/info_office_phone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/info_office_phone_text"
+            style="@style/info_fragment_tab" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/info_office_fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/info_office_tab"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/white">
+
+    </FrameLayout>
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                style="@style/info_sample_layout" >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/info_title_black"
+                    android:text="地铁1号线：罗宝线（罗湖-机场东）"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/info_title_black"
+                    android:layout_marginTop="5dp"
+                    android:text="地铁2号线：蛇口线（赤湾-新秀）"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/info_title_black"
+                    android:layout_marginTop="5dp"
+                    android:text="地铁3号线：龙岗线（益田 -双龙）"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/info_title_black"
+                    android:layout_marginTop="5dp"
+                    android:text="地铁4号线：龙华线（福田口岸-清湖）"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/info_title_black"
+                    android:layout_marginTop="5dp"
+                    android:text="地铁5号线：环中线（前海湾-黄贝岭）"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

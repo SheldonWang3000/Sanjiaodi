@@ -72,7 +72,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             public boolean onPreDraw() {
                 if (checkDeviceHasNavigationBar(getApplicationContext())) {
                     RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
-//                    float height = getApplicationContext().getResources().getDisplayMetrics().density * 48 + 0.5f;
                     float height = getNavigationBarHeight(getApplicationContext());
                     params.height = (int)(height);
                     view.setLayoutParams(params);
@@ -81,10 +80,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
                 return true;
             }
         });
-//        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) view.getLayoutParams();
-//        params.height = 48;
-//        view.setLayoutParams(params);
-
 
         radioGroup = (RadioGroup) findViewById(R.id.bottom_button_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -124,14 +119,14 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         fragmentMap.put("forthFragment", forthFragment);
         fragmentMap.put("searchFragment", searchFragment);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.sliding_menu, menuFragment, "menu").commit();
+
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.sliding_menu, menuFragment, "menu").commit();
-            content = firstFragment;
+            switchContent("firstFragment");
         }
         else {
-            content = (Fragment)savedInstanceState.get("save");
+            switchContent((Fragment)savedInstanceState.get("save"));
         }
-        switchContent(content);
         slidingMenu.setBehindWidth(600);
         slidingMenu.setFadeDegree(0.35f);
         slidingMenu.setBehindScrollScale(0.0f);
@@ -140,14 +135,12 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     }
 
     public void switchContent(String fragmentName) {
-
         content = fragmentMap.get(fragmentName);
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, content).commit();
         getSlidingMenu().showContent();
     }
 
     public void switchContent(Fragment fragment) {
-
         content = fragment;
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, content).commit();
         getSlidingMenu().showContent();
