@@ -23,6 +23,7 @@
             android:gravity="center"
             android:layout_marginTop="20dp"
             android:textSize="15dp"
+            android:textColor="@android:color/white"
             android:layout_below="@+id/process" />
     </RelativeLayout>
 

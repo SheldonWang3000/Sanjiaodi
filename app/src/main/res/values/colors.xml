@@ -9,6 +9,10 @@
     <color name="header_text_color">#ffffff</color>
     <color name="bottom_gray">#e1e1e1</color>
     <color name="loading_background">#636363</color>
-    <color name="background_gray">#ececec</color>
+    <color name="background_gray">#f1f1f1</color>
     <color name="radio_selected">#6ab393</color>
+    <color name="gray_text">#aaaaaa</color>
+    <color name="weixin_green">#57b757</color>
+    <color name="guest_red">#FA4C3D</color>
+    <color name="half_black">#88000000</color>
 </resources>

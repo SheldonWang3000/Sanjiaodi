@@ -114,4 +114,14 @@ public class MyVolley {
                     }
                 });
     }
+
+    public static void login(Context context, String username, String password,
+                             Response.Listener<JSONObject> callback,
+                             Response.ErrorListener errorListener) {
+        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/member/login_api/name/"
+                + username + "/password/" + password + ".html";
+        SJDLog.i("login_url", url);
+        MyVolley.getInstance(context).get(url, callback, errorListener);
+
+    }
 }

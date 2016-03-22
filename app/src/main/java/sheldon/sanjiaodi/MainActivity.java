@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -48,15 +46,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        if (currentapiVersion >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Window window = this.getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.pku_red));
-        }
-
 
         slidingMenu = getSlidingMenu();
         String str = "" + checkDeviceHasNavigationBar(this);
@@ -127,7 +116,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         else {
             switchContent((Fragment)savedInstanceState.get("save"));
         }
-        slidingMenu.setBehindWidth(600);
+        slidingMenu.setBehindWidth(800);
         slidingMenu.setFadeDegree(0.35f);
         slidingMenu.setBehindScrollScale(0.0f);
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);

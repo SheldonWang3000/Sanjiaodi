@@ -22,11 +22,9 @@ public class SecondFragment extends BaseFragment {
 
     @Override
     protected View initView(LayoutInflater inflater) {
-        // TODO Auto-generated method stub
         View view = inflater.inflate(R.layout.fragment_second, null);
         imageView = ((ImageView) view.findViewById(R.id.image_view));
         imageView2 = ((ImageView) view.findViewById(R.id.image_view2));
-
         return view;
     }
 

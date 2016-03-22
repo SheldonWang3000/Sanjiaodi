@@ -2,127 +2,116 @@ package sheldon.sanjiaodi;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends Activity {
 
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+    private EditText userEditText;
+    private EditText passwordEditText;
+    private Button btn_login;
     private View mProgressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
+        userEditText = (EditText) findViewById(R.id.login_username);
+        passwordEditText = (EditText) findViewById(R.id.login_password);
 
-        Button alertButton = (Button) findViewById(R.id.button);
-        alertButton.requestFocus();
-        alertButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-
-                builder.setTitle ("Hello Dialog")
-                        .setMessage ("Is this material design?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent();
-                                intent.setClass(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                SJDLog.d("Login", "NO");
-                            }
-                        });
-                builder.create().show();
-            }
-        });
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        btn_login = (Button) findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                View v = LoginActivity.this.getCurrentFocus();
+                if (v != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 attemptLogin();
             }
         });
 
-        mProgressView = findViewById(R.id.login_progress);
+        mProgressView = findViewById(R.id.process);
     }
 
-
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     private void attemptLogin() {
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
+        userEditText.setError(null);
+        passwordEditText.setError(null);
 
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String username = userEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            mPasswordView.requestFocus();
+        if (TextUtils.isEmpty(password))  {
+            passwordEditText.setError(getString(R.string.error_invalid_password));
+            passwordEditText.requestFocus();
+            return;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            mEmailView.requestFocus();
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            mEmailView.requestFocus();
+        if (TextUtils.isEmpty(username)) {
+            userEditText.setError(getString(R.string.error_field_required));
+            userEditText.requestFocus();
+            return;
         }
+        mProgressView.setVisibility(View.VISIBLE);
+        MyVolley.login(this, username, password, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    SJDLog.i("login", response);
+                    if (response.getInt("sign") == 1) {
+                        mProgressView.setVisibility(View.GONE);
+                        SharedPreferences s = getSharedPreferences("sjd", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = s.edit();
+                        editor.putString("token", "Y");
+                        editor.commit();
+                        Intent intent = new Intent();
+                        intent.setClass(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        mProgressView.setVisibility(View.GONE);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                        builder.setTitle("登录错误")
+                                .setMessage ("登录失败")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                    }
+                                });
+                        builder.create().show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                mProgressView.setVisibility(View.GONE);
+            }
+        });
 
-    }
-
-    private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-        return email.contains("@");
-    }
-
-    private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
     }
 
 }
