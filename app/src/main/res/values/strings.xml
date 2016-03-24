@@ -42,4 +42,5 @@
     <string name="info_metro_line_text">地铁线路</string>
     <string name="info_metro_station_text">大学城地铁站</string>
     <string name="login_title">登录</string>
+    <string name="title_activity_tag">TagActivity</string>
 </resources>

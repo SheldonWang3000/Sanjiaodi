@@ -81,7 +81,7 @@ public class MyVolley {
 
     public void getImage(ImageView imageView, String url, ImageLoader.ImageListener listener) {
         if (listener == null) {
-            listener = ImageLoader.getImageListener(imageView, R.mipmap.image_default, R.mipmap.image_failed);
+            listener = ImageLoader.getImageListener(imageView, R.mipmap.index, R.mipmap.image_failed);
         }
         mImageLoader.get(baseUrl + url, listener);
     }

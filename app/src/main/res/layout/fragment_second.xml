@@ -1,38 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_purple"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="sheldon.sanjiaodi.MainActivity">
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/icon"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:src="@mipmap/image_default"
-        app:civ_border_width="2dp"
-        app:civ_border_color="#FF000000"/>
-
-    <ImageView
-        android:layout_below="@+id/icon"
-        android:id="@+id/image_view"
+    android:background="@color/background_gray">
+    <include layout="@layout/header"/>
+    <RadioGroup
+        android:id="@+id/star_tab"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/header">
+        <RadioButton
+            android:id="@+id/star_doing_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:checked="true"
+            style="@style/info_fragment_tab"
+            android:text="正在进行"/>
+        <RadioButton
+            android:id="@+id/star_done_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            style="@style/info_fragment_tab"
+            android:text="已经完成"/>
+    </RadioGroup>
+    <View
+        android:id="@+id/star_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_below="@+id/star_tab"
+        android:background="@color/pku_red"/>
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/star_ptr_frame"
+        android:layout_below="@+id/star_line"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <in.srain.cube.views.loadmore.LoadMoreListViewContainer
+            android:id="@+id/star_load_more"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cube_mints_white">
+            <ListView
+                android:id="@+id/star_list_view"
+                android:divider="@null"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </in.srain.cube.views.loadmore.LoadMoreListViewContainer>
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+    <include
+        layout="@layout/process"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:clickable="true"
-        android:scaleType="fitCenter" />
-    <ImageView
-        android:id="@+id/image_view2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:scaleType="fitCenter"
-        android:layout_below="@+id/image_view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

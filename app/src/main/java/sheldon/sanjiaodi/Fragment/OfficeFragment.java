@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import sheldon.sanjiaodi.BaseFragment;
-import sheldon.sanjiaodi.ImageActivity;
+import sheldon.sanjiaodi.Activity.ImageActivity;
 import sheldon.sanjiaodi.R;
 
 /**
@@ -38,7 +38,7 @@ public class OfficeFragment extends BaseFragment{
     }
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
         return null;
     }
 

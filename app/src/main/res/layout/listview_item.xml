@@ -4,17 +4,16 @@
     xmlns:swipe="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipe_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     swipe:leftEdgeSwipeOffset="0dp"
     swipe:rightEdgeSwipeOffset="0dp"
-    swipe:clickToClose="true"
-    android:minHeight="80dp">
+    swipe:clickToClose="true" >
 
     <LinearLayout
         android:background="@color/pku_red"
         android:id="@+id/item_menu"
         android:layout_width="80dp"
-        android:layout_height="match_parent">
+        android:layout_height="80dp">
 
         <TextView
             android:id="@+id/swipe_menu_0"
@@ -27,19 +26,51 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:background="@android:color/white"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="80dp"
+        android:padding="7dp">
+        <ImageView
+            android:id="@+id/list_small_image"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:src="@mipmap/image_failed"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp"
+            android:layout_weight="4"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/list_content_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                style="@style/list_content"
+                android:gravity="bottom"
+                android:paddingBottom="5dp"
+                android:text="景观格局与生态过程耦合"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                style="@style/list_content"
+                android:text="开始时间：2016-01-06（星期三）"/>
+        </LinearLayout>
         <TextView
-            android:id="@+id/item_text"
-            android:padding="10dp"
-            android:text="1"
+            android:id="@+id/time_text"
+            android:text="2天前"
             android:layout_centerInParent="true"
-            android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </RelativeLayout>
+            style="@style/list_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
 
 </com.daimajia.swipe.SwipeLayout>

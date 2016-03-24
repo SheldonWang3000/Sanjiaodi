@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import sheldon.sanjiaodi.MainActivity;
+import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.SJDLog;
 
@@ -50,12 +50,12 @@ public class MenuFragment extends Fragment implements OnClickListener {
             case R.id.sliding_menu1:
                 SJDLog.i("menu_click", "menu1");
                 mainActivity.showTab();
-                mainActivity.switchContent("firstFragment");
+                mainActivity.switchContent(new FirstFragment());
                 break;
             case R.id.sliding_menu2:
                 SJDLog.i("menu_click", "menu2");
                 mainActivity.hideTab();
-                mainActivity.switchContent("searchFragment");
+                mainActivity.switchContent(new SearchFragment());
                 break;
             case R.id.sliding_menu3:
                 SJDLog.i("menu_click", "menu3");

@@ -15,23 +15,35 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".IndexActivity">
+        <activity android:name=".Activity.IndexActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Fragment.ContentActivity" />
-        <activity android:name=".ImageActivity"
-            android:theme="@style/AppImageTheme"/>
-        <activity android:name=".InfoActivity.ShoppingActivity" />
-        <activity android:name=".InfoActivity.InfoSampleActivity" />
-        <activity android:name=".InfoActivity.OfficeActivity" />
-        <activity android:name=".InfoActivity.MetroActivity" />
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.ContentActivity" />
+        <activity
+            android:name=".Activity.ImageActivity"
+            android:theme="@style/AppImageTheme" />
+        <activity android:name=".Activity.ShoppingActivity" />
+        <activity android:name=".Activity.InfoSampleActivity" />
+        <activity android:name=".Activity.OfficeActivity" />
+        <activity android:name=".Activity.MetroActivity" />
+        <activity android:name=".Activity.ParticipateActivity" />
+        <activity android:name=".Activity.MyselfActivity" />
+        <activity
+            android:name=".Activity.PhoneActivity"
+            android:label="@string/title_activity_phone" />
+        <activity android:name=".Activity.MyselfAlertActivity" />
+        <activity
+            android:name=".Activity.TagActivity"
+            android:label="@string/title_activity_tag" />
+        <activity android:name=".Activity.PasswordActivity"></activity>
     </application>
 
 </manifest>

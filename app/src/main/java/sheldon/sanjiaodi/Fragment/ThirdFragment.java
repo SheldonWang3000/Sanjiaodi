@@ -7,11 +7,11 @@ import android.view.View;
 import android.widget.TextView;
 
 import sheldon.sanjiaodi.BaseFragment;
-import sheldon.sanjiaodi.InfoActivity.InfoSampleActivity;
-import sheldon.sanjiaodi.InfoActivity.MetroActivity;
-import sheldon.sanjiaodi.InfoActivity.OfficeActivity;
-import sheldon.sanjiaodi.InfoActivity.ShoppingActivity;
-import sheldon.sanjiaodi.MainActivity;
+import sheldon.sanjiaodi.Activity.InfoSampleActivity;
+import sheldon.sanjiaodi.Activity.MetroActivity;
+import sheldon.sanjiaodi.Activity.OfficeActivity;
+import sheldon.sanjiaodi.Activity.ShoppingActivity;
+import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.R;
 
 /**
@@ -46,7 +46,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
         return "Third";
     }
 

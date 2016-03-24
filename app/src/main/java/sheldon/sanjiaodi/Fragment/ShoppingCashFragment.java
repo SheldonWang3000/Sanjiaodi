@@ -18,7 +18,7 @@ public class ShoppingCashFragment extends BaseFragment{
     }
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
         return null;
     }
 

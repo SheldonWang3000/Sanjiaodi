@@ -18,7 +18,7 @@ public class OfficePhoneFragment extends BaseFragment{
     }
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
         return null;
     }
 

@@ -3,15 +3,15 @@ package sheldon.sanjiaodi.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.daimajia.swipe.util.Attributes;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +22,9 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import sheldon.sanjiaodi.Activity.ContentActivity;
 import sheldon.sanjiaodi.BaseFragment;
-import sheldon.sanjiaodi.DataAdapter;
+import sheldon.sanjiaodi.ListItem.ItemAdapter;
 import sheldon.sanjiaodi.R;
 
 /**
@@ -33,14 +34,18 @@ public class FirstFragment extends BaseFragment {
 
     private ListView listView;
     private PtrClassicFrameLayout ptrFrameLayout;
-    private DataAdapter dataAdapter;
+    private ItemAdapter itemAdapter;
     private List<String> stringList;
+    private RelativeLayout process;
 
     @Override
     protected View initView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_first, null);
-        File file1 = new File(getContext().getFilesDir(), "getFilesDir.txt");
-        Log.d("TAG", "file1=" + file1.getAbsolutePath());
+
+        ((TextView) view.findViewById(R.id.header_text)).setText("三角地");
+
+        process = (RelativeLayout) view.findViewById(R.id.loading);
+
         ptrFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.ptr_frame);
         ptrFrameLayout.disableWhenHorizontalMove(true);
         ptrFrameLayout.setResistance(2.8f);
@@ -55,7 +60,7 @@ public class FirstFragment extends BaseFragment {
                     @Override
                     public void run() {
                         stringList.add("100");
-                        dataAdapter.notifyDataSetChanged();
+                        itemAdapter.notifyDataSetChanged();
                         loadMoreListViewContainer.loadMoreFinish(true, true);
                     }
                 }, 1000);
@@ -64,15 +69,15 @@ public class FirstFragment extends BaseFragment {
         });
 
         stringList = new ArrayList<>();
-        dataAdapter = new DataAdapter(stringList, getContext());
-        listView.setAdapter(dataAdapter);
-        dataAdapter.setMode(Attributes.Mode.Single);
+        itemAdapter = new ItemAdapter(stringList, getContext());
+        listView.setAdapter(itemAdapter);
+        itemAdapter.setMode(Attributes.Mode.Single);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int openPosition = dataAdapter.getOpenItems().get(0);
+                int openPosition = itemAdapter.getOpenItems().get(0);
                 if (openPosition != -1) {
-                    dataAdapter.closeItem(openPosition);
+                    itemAdapter.closeItem(openPosition);
                 }else {
                     Intent i = new Intent();
                     i.setClass(getContext(), ContentActivity.class);
@@ -101,7 +106,7 @@ public class FirstFragment extends BaseFragment {
     }
 
     @Override
-    protected String getTitle() {
+    public String getTitle() {
         return "First";
     }
 
@@ -112,13 +117,11 @@ public class FirstFragment extends BaseFragment {
             stringList.add(String.valueOf(i));
         }
 
-        dataAdapter.notifyDataSetChanged();
+        itemAdapter.notifyDataSetChanged();
     }
 
     @Override
     protected void setListener() {
-        // TODO Auto-generated method stub
-
     }
 
 

@@ -11,24 +11,25 @@
         android:background="@mipmap/center"
         android:layout_below="@+id/header">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:orientation="vertical">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/icon"
+                android:layout_gravity="center"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@mipmap/logo" />
             <TextView
                 android:id="@+id/username_text"
-                android:layout_width="60dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:textSize="16dp"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:text="用户名"/>
         </LinearLayout>
     </RelativeLayout>
@@ -39,7 +40,7 @@
         android:orientation="vertical"
         android:id="@+id/linearLayout">
         <LinearLayout
-            android:id="@+id/btn_activity"
+            android:id="@+id/btn_part"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal"
@@ -179,7 +180,14 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:text="退出登录"
+        android:stateListAnimator="@null"
         android:textColor="@color/pku_red"
         android:textSize="16dp"
         android:background="@drawable/btn_style"/>
+
+    <include
+        layout="@layout/process"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>

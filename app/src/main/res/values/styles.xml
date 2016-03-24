@@ -66,4 +66,21 @@
         <item name="android:layout_marginRight">30dp</item>
         <item name="android:padding">10dp</item>
     </style>
+
+    <style name="list_content">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+    <style name="myself_content">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="hot_tag">
+        <item name="android:clickable">true</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

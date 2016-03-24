@@ -46,7 +46,7 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract View initView(LayoutInflater inflater);
 
-    protected abstract String getTitle();
+    public abstract String getTitle();
 
     /**
      * 初始化数据
