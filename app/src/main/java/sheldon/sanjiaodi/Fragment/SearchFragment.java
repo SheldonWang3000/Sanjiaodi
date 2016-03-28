@@ -21,6 +21,7 @@ import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.Activity.TagActivity;
 import sheldon.sanjiaodi.BaseFragment;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
+import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.SJDLog;
 
@@ -31,7 +32,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     private ListView listView;
     private ItemAdapter itemAdapter;
-    private List<String> stringList;
+    private List<ItemData> stringList;
     private TextView[] tags;
     private Map<Integer, TagData> tagDataMap;
     private TagData[] datas;
@@ -89,7 +90,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
         for (int i = 0; i < 5; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();

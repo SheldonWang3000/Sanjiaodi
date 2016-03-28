@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -43,7 +46,8 @@
         <activity
             android:name=".Activity.TagActivity"
             android:label="@string/title_activity_tag" />
-        <activity android:name=".Activity.PasswordActivity"></activity>
+        <activity android:name=".Activity.PasswordActivity" />
+        <activity android:name=".Activity.UploadActivity"></activity>
     </application>
 
 </manifest>

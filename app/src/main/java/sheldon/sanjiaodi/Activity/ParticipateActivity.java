@@ -22,6 +22,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
+import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.R;
 
 public class ParticipateActivity extends Activity implements View.OnClickListener{
@@ -29,7 +30,7 @@ public class ParticipateActivity extends Activity implements View.OnClickListene
     private PtrClassicFrameLayout ptrFrameLayout;
     private ListView listView;
     private ItemAdapter itemAdapter;
-    private ArrayList<String> stringList;
+    private ArrayList<ItemData> stringList;
     private RelativeLayout process;
     private LoadMoreListViewContainer loadMoreListViewContainer;
 
@@ -54,7 +55,7 @@ public class ParticipateActivity extends Activity implements View.OnClickListene
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        stringList.add("100");
+//                        stringList.add("100");
                         loadMoreListViewContainer.loadMoreFinish(true, true);
                         itemAdapter.notifyDataSetChanged();
                     }
@@ -108,7 +109,7 @@ public class ParticipateActivity extends Activity implements View.OnClickListene
     private void initData() {
         for (int i = 0; i < 20; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();
@@ -148,7 +149,7 @@ public class ParticipateActivity extends Activity implements View.OnClickListene
         stringList.clear();
         for (int i = 0; i < 15; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();
@@ -163,7 +164,7 @@ public class ParticipateActivity extends Activity implements View.OnClickListene
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        stringList.add("100");
+//                        stringList.add("100");
                         loadMoreListViewContainer.loadMoreFinish(true, true);
                         itemAdapter.notifyDataSetChanged();
                     }
@@ -174,7 +175,7 @@ public class ParticipateActivity extends Activity implements View.OnClickListene
         stringList.clear();
         for (int i = 0; i < 3; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();

@@ -1,7 +1,9 @@
 package sheldon.sanjiaodi.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -39,7 +41,13 @@ public class MyselfActivity extends Activity implements View.OnClickListener{
     }
 
     private void initData() {
-        userText.setText("Euangelion");
+        SharedPreferences s = getSharedPreferences("sjd", Context.MODE_PRIVATE);
+        userText.setText(s.getString("realname", "三角地"));
+        idText.setText("No_" + s.getString("username", "sjd"));
+        phoneText.setText("Tel_" + s.getString("mobile", ""));
+        mailText.setText(s.getString("email", ""));
+        collegeText.setText(s.getString("department", ""));
+        subjectText.setText(s.getString("major", ""));
     }
 
     @Override

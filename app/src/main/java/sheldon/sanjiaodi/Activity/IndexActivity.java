@@ -33,7 +33,7 @@ public class IndexActivity extends Activity{
             public void run() {
 
                 SharedPreferences sharedPreferences = getSharedPreferences("sjd", Context.MODE_PRIVATE);
-                String token = sharedPreferences.getString("token", "");
+                String token = sharedPreferences.getString("uid", "");
                 if (TextUtils.isEmpty(token)) {
                     login = false;
                 }

@@ -51,8 +51,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             style="@style/myself_content"
-            android:gravity="center_vertical|right"
-            android:text="content"/>
+            android:gravity="center_vertical|right"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
@@ -79,8 +78,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             style="@style/myself_content"
-            android:gravity="center_vertical|right"
-            android:text="content"/>
+            android:gravity="center_vertical|right"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
@@ -108,8 +106,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             style="@style/myself_content"
-            android:gravity="center_vertical|right"
-            android:text="1501213968@sz.pku.edu.cn"/>
+            android:gravity="center_vertical|right"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
@@ -137,8 +134,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             style="@style/myself_content"
-            android:gravity="center_vertical|right"
-            android:text="content"/>
+            android:gravity="center_vertical|right"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"
@@ -166,8 +162,7 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             style="@style/myself_content"
-            android:gravity="center_vertical|right"
-            android:text="content"/>
+            android:gravity="center_vertical|right"/>
         <ImageView
             android:layout_width="0dp"
             android:layout_height="15dp"

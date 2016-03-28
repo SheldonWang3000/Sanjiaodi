@@ -84,10 +84,17 @@ public class LoginActivity extends Activity {
                 try {
                     SJDLog.i("login", response);
                     if (response.getInt("sign") == 1) {
+                        JSONObject tmpObject = response.getJSONObject("data");
                         mProgressView.setVisibility(View.GONE);
                         SharedPreferences s = getSharedPreferences("sjd", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = s.edit();
-                        editor.putString("token", "Y");
+                        editor.putString("uid", tmpObject.getString("uid"));
+                        editor.putString("realname", tmpObject.getString("realname"));
+                        editor.putString("mobile", tmpObject.getString("mobile"));
+                        editor.putString("username", tmpObject.getString("username"));
+                        editor.putString("email", tmpObject.getString("email"));
+                        editor.putString("department", tmpObject.getString("department"));
+                        editor.putString("major", tmpObject.getString("major"));
                         editor.commit();
                         Intent intent = new Intent();
                         intent.setClass(LoginActivity.this, MainActivity.class);

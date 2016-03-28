@@ -24,6 +24,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
+import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.R;
 
 public class TagActivity extends Activity{
@@ -31,7 +32,7 @@ public class TagActivity extends Activity{
     private ListView listView;
     private PtrClassicFrameLayout ptrFrameLayout;
     private ItemAdapter itemAdapter;
-    private List<String> stringList;
+    private List<ItemData> stringList;
     private LoadMoreListViewContainer loadMoreListViewContainer;
     private RelativeLayout process;
 
@@ -116,7 +117,7 @@ public class TagActivity extends Activity{
 
         for (int i = 10; i < 19; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();
@@ -130,7 +131,7 @@ public class TagActivity extends Activity{
                     @Override
                     public void run() {
 
-                        stringList.add("100");
+//                        stringList.add("100");
                         itemAdapter.notifyDataSetChanged();
                         loadMoreListViewContainer.loadMoreFinish(true, true);
                     }

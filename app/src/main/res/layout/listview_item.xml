@@ -55,6 +55,7 @@
                 android:paddingBottom="5dp"
                 android:text="景观格局与生态过程耦合"/>
             <TextView
+                android:id="@+id/start_time_text"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

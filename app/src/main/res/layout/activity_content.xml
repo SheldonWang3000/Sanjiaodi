@@ -34,6 +34,14 @@
                 android:background="@android:color/white"
                 android:textSize="16dp"
                 android:gravity="center"/>
+            <TextView
+                android:id="@+id/deadline_time"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="报名截止时间：2016-3-28"/>
             <RelativeLayout
                 android:id="@+id/btn_sign"
                 android:layout_width="match_parent"
@@ -68,6 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
+                android:textColor="@android:color/black"
                 android:padding="5dp"/>
         </LinearLayout>
 

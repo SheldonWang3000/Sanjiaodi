@@ -2,6 +2,7 @@ package sheldon.sanjiaodi;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.util.LruCache;
 import android.widget.ImageView;
 
@@ -9,9 +10,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -79,16 +85,53 @@ public class MyVolley {
     }
 
 
-    public void getImage(ImageView imageView, String url, ImageLoader.ImageListener listener) {
+    public static void getImage(Context context, ImageView imageView, String url) {
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.mipmap.index)
+                .error(R.mipmap.image_failed)
+                .into(imageView);
+    }
+    public static void getImage(Context context, ImageView imageView, String url,
+                                   ImageLoader.ImageListener listener) {
         if (listener == null) {
             listener = ImageLoader.getImageListener(imageView, R.mipmap.index, R.mipmap.image_failed);
         }
-        mImageLoader.get(baseUrl + url, listener);
+        MyVolley.getInstance(context).mImageLoader.get(baseUrl + url, listener);
     }
 
-    public void get(String url, Response.Listener<JSONObject> callback, Response.ErrorListener errorListener) {
+    public static void getImage(Context context, String url,
+                                SimpleTarget target) {
+        Glide.with(context.getApplicationContext())
+                .load(url)
+                .asBitmap()
+                .error(R.mipmap.image_failed)
+                .placeholder(R.mipmap.index)
+                .into(target);
+    }
+
+    public void getJson(String url, Response.Listener<JSONObject> callback, Response.ErrorListener errorListener) {
         addToRequestQueue(
                 new JsonObjectRequest(
+                        Request.Method.GET,
+                        baseUrl + url,
+                        null,
+                        callback,
+                        errorListener));
+    }
+
+    public void getString(String url, Response.Listener<String> callback, Response.ErrorListener errorListener) {
+        addToRequestQueue(
+                new StringRequest(
+                        Request.Method.GET,
+                        baseUrl + url,
+                        callback,
+                        errorListener));
+    }
+
+    public void getArray(String url, Response.Listener<JSONArray> callback, Response.ErrorListener errorListener) {
+        addToRequestQueue(
+                new JsonArrayRequest(
                         Request.Method.GET,
                         baseUrl + url,
                         null,
@@ -121,7 +164,45 @@ public class MyVolley {
         String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/member/login_api/name/"
                 + username + "/password/" + password + ".html";
         SJDLog.i("login_url", url);
-        MyVolley.getInstance(context).get(url, callback, errorListener);
+        MyVolley.getInstance(context).getJson(url, callback, errorListener);
 
     }
+
+    public static void getContent(Context context, String uid, Response.Listener callback,
+                                  Response.ErrorListener errorListener) {
+        SJDLog.i("MyVolley", "getContent");
+        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/event/index/index_api_new/uid/"
+                + uid + ".html";
+        MyVolley.getInstance(context).getArray(url, callback, errorListener);
+    }
+
+    public static void collect(Context context, String uid, String id,
+                               Response.Listener callback,
+                               Response.ErrorListener errorListener) {
+        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/event/index/doCollect_api/event_id/"
+               + id + "/uid/" + uid + ".html";
+        SJDLog.i("Volley_collect", url);
+        MyVolley.getInstance(context).getString(url, callback, errorListener);
+    }
+
+    public static void unCollect(Context context, String uid, String id,
+                               Response.Listener callback,
+                               Response.ErrorListener errorListener) {
+        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/event/index/unCollect_api/event_id/"
+                + id + "/uid/" + uid + ".html";
+        SJDLog.i("Volley_collect", url);
+        MyVolley.getInstance(context).getString(url, callback, errorListener);
+    }
+
+    public void uploadImage(String url, String location,
+                            Response.Listener callback,
+                            Response.ErrorListener errorListener) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        Bitmap bitmap = BitmapFactory.decodeFile(location, options);
+        Image image = new Image(bitmap, location);
+        Request request = new UploadRequest(url, image, callback, errorListener) ;
+        addToRequestQueue(request) ;
+    }
+
 }

@@ -25,6 +25,7 @@ import sheldon.sanjiaodi.Activity.ContentActivity;
 import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.BaseFragment;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
+import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.R;
 
 /**
@@ -35,7 +36,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
     private PtrClassicFrameLayout ptrFrameLayout;
     private ListView listView;
     private ItemAdapter itemAdapter;
-    private ArrayList<String> stringList;
+    private ArrayList<ItemData> stringList;
     private LoadMoreListViewContainer loadMoreListViewContainer;
     private RelativeLayout process;
 
@@ -59,7 +60,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        stringList.add("100");
+//                        stringList.add("100");
                         loadMoreListViewContainer.loadMoreFinish(true, true);
                         itemAdapter.notifyDataSetChanged();
                     }
@@ -119,7 +120,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
     protected void initData(Bundle savedInstanceState) {
         for (int i = 0; i < 20; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();
@@ -159,7 +160,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
         stringList.clear();
         for (int i = 0; i < 15; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();
@@ -174,7 +175,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        stringList.add("100");
+//                        stringList.add("100");
                         loadMoreListViewContainer.loadMoreFinish(true, true);
                         itemAdapter.notifyDataSetChanged();
                     }
@@ -185,7 +186,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
         stringList.clear();
         for (int i = 0; i < 3; ++i)
         {
-            stringList.add(String.valueOf(i));
+//            stringList.add(String.valueOf(i));
         }
 
         itemAdapter.notifyDataSetChanged();

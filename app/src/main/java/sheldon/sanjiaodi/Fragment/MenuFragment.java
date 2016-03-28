@@ -4,6 +4,7 @@ package sheldon.sanjiaodi.Fragment;
  * Created by Sheldon on 2016/3/3.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import sheldon.sanjiaodi.Activity.MainActivity;
+import sheldon.sanjiaodi.Activity.UploadActivity;
 import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.SJDLog;
 
@@ -59,7 +61,10 @@ public class MenuFragment extends Fragment implements OnClickListener {
                 break;
             case R.id.sliding_menu3:
                 SJDLog.i("menu_click", "menu3");
-                toast.show();
+//                toast.show();
+                Intent i = new Intent();
+                i.setClass(getContext(), UploadActivity.class);
+                getContext().startActivity(i);
                 break;
             case R.id.sliding_menu4:
                 SJDLog.i("menu_click", "menu4");

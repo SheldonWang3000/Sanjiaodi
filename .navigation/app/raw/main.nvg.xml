@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+  ns = "http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+  <locations  
+    class = "java.util.ArrayList">
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.MyselfActivity"/>
+      <point      
+        x = "500"      
+        y = "100"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.MyselfAlertActivity"/>
+      <point      
+        x = "550"      
+        y = "150"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.LoginActivity"/>
+      <point      
+        x = "600"      
+        y = "200"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.MetroActivity"/>
+      <point      
+        x = "650"      
+        y = "250"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.IndexActivity"/>
+      <point      
+        x = "700"      
+        y = "300"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.ShoppingActivity"/>
+      <point      
+        x = "750"      
+        y = "350"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.OfficeActivity"/>
+      <point      
+        x = "800"      
+        y = "400"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.TagActivity"/>
+      <point      
+        x = "850"      
+        y = "450"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.InfoSampleActivity"/>
+      <point      
+        x = "900"      
+        y = "500"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.ParticipateActivity"/>
+      <point      
+        x = "950"      
+        y = "550"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.PhoneActivity"/>
+      <point      
+        x = "1000"      
+        y = "600"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.PasswordActivity"/>
+      <point      
+        x = "1050"      
+        y = "650"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.UploadActivity"/>
+      <point      
+        x = "1100"      
+        y = "700"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.ContentActivity"/>
+      <point      
+        x = "1150"      
+        y = "750"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.ImageActivity"/>
+      <point      
+        x = "1200"      
+        y = "800"/>
+    </statePointEntry>
+    <statePointEntry>
+      <state      
+        class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
+        className = "sheldon.sanjiaodi.Activity.MainActivity"/>
+      <point      
+        x = "1250"      
+        y = "850"/>
+    </statePointEntry>
+  </locations>
+</navigationModel>
