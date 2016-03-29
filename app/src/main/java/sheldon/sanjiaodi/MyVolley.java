@@ -170,9 +170,17 @@ public class MyVolley {
 
     public static void getContent(Context context, String uid, Response.Listener callback,
                                   Response.ErrorListener errorListener) {
-        SJDLog.i("MyVolley", "getContent");
         String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/event/index/index_api_new/uid/"
                 + uid + ".html";
+        SJDLog.i("MyVolley", url);
+        MyVolley.getInstance(context).getArray(url, callback, errorListener);
+    }
+
+    public static void getCollection(Context context, String uid, Response.Listener callback,
+                                  Response.ErrorListener errorListener) {
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/myevent_api/lora/collect/uid/"
+                + uid + ".html";
+        SJDLog.i("MyVolley", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }
 

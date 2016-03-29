@@ -18,6 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 import sheldon.sanjiaodi.Activity.ImageActivity;
+import sheldon.sanjiaodi.BaseFragment;
 import sheldon.sanjiaodi.Info;
 import sheldon.sanjiaodi.MyVolley;
 import sheldon.sanjiaodi.R;
@@ -28,14 +29,20 @@ import sheldon.sanjiaodi.SJDLog;
  */
 public class ItemAdapter extends BaseSwipeAdapter {
 
-    List<ItemData> list;
-    Context context;
+    private List<ItemData> list;
+    private Context context;
+    private BaseFragment fragment;
 
     public ItemAdapter(List<ItemData> list, Context context) {
         this.list = list;
         this.context = context;
+        this.fragment= null;
     }
-
+    public ItemAdapter(List<ItemData> list, Context context, BaseFragment fragment) {
+        this.list = list;
+        this.context = context;
+        this.fragment = fragment;
+    }
     @Override
     public int getCount() {
         return list.size();
@@ -138,6 +145,9 @@ public class ItemAdapter extends BaseSwipeAdapter {
                                             if (response.equals("1")) {
                                                 textView.setText("已收藏");
                                                 Toast.makeText(context, "收藏成功", Toast.LENGTH_SHORT).show();
+                                                if (fragment != null) {
+                                                    fragment.refresh();
+                                                }
                                             }else {
                                                 Toast.makeText(context, "收藏失败", Toast.LENGTH_SHORT).show();
                                             }
@@ -165,6 +175,9 @@ public class ItemAdapter extends BaseSwipeAdapter {
                                             if (response.equals("1")) {
                                                 textView.setText("收藏");
                                                 Toast.makeText(context, "取消成功", Toast.LENGTH_SHORT).show();
+                                                if (fragment != null) {
+                                                    fragment.refresh();
+                                                }
                                             }else {
                                                 Toast.makeText(context, "取消失败", Toast.LENGTH_SHORT).show();
                                             }

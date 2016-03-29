@@ -28,7 +28,7 @@ public class MetroLineFragment extends BaseFragment{
     }
 
     @Override
-    protected void setListener() {
+    public void refresh() {
 
     }
 }

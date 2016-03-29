@@ -28,7 +28,7 @@ public class ShoppingShopFragment extends BaseFragment{
     }
 
     @Override
-    protected void setListener() {
+    public void refresh() {
 
     }
 }

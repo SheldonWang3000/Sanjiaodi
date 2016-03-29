@@ -103,7 +103,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    protected void setListener() {
+    public void refresh() {
 
     }
 

@@ -55,7 +55,7 @@ public class ForthFragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
-    protected void setListener() {
+    public void refresh() {
         // TODO Auto-generated method stub
 
     }

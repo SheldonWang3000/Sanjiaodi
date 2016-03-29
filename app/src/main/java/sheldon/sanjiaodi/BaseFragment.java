@@ -30,7 +30,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = initView(inflater);
-        setListener();
+        refresh();
         return rootView;
     }
 
@@ -55,9 +55,7 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initData(Bundle savedInstanceState);
 
-    /**
-     * 设置监听
-     */
-    protected abstract void setListener();
+
+    public abstract void refresh();
 
 }

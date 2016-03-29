@@ -28,7 +28,7 @@ public class MetroStationFragment extends BaseFragment{
     }
 
     @Override
-    protected void setListener() {
+    public void refresh() {
 
     }
 }

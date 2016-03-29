@@ -48,7 +48,7 @@ public class OfficeFragment extends BaseFragment{
     }
 
     @Override
-    protected void setListener() {
+    public void refresh() {
 
     }
 }

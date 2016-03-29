@@ -163,11 +163,11 @@ public class FirstFragment extends BaseFragment {
                         try {
                             JSONArray array = (JSONArray) response;
                             SJDLog.i("refreshList", array.toString());
-                            getList(array);
                             SharedPreferences s = getActivity().getSharedPreferences("sjd", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = s.edit();
                             editor.putString("content", response.toString());
                             editor.commit();
+                            getList(array);
                             process.setVisibility(View.GONE);
                             ptrFrameLayout.refreshComplete();
 
@@ -216,7 +216,7 @@ public class FirstFragment extends BaseFragment {
     }
 
     @Override
-    protected void setListener() {
+    public void refresh() {
     }
 
 
