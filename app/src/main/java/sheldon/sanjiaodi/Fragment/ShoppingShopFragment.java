@@ -27,8 +27,4 @@ public class ShoppingShopFragment extends BaseFragment{
 
     }
 
-    @Override
-    public void refresh() {
-
-    }
 }

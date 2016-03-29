@@ -215,10 +215,5 @@ public class FirstFragment extends BaseFragment {
         SJDLog.i("size", itemList.size() + ":" + moreItemList.size());
     }
 
-    @Override
-    public void refresh() {
-    }
-
-
 
 }

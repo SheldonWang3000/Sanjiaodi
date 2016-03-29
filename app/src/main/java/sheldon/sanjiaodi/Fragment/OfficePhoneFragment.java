@@ -27,8 +27,4 @@ public class OfficePhoneFragment extends BaseFragment{
 
     }
 
-    @Override
-    public void refresh() {
-
-    }
 }

@@ -39,12 +39,13 @@ import sheldon.sanjiaodi.ListItem.ItemAdapter;
 import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.MyVolley;
 import sheldon.sanjiaodi.R;
+import sheldon.sanjiaodi.RefreshInterface;
 import sheldon.sanjiaodi.SJDLog;
 
 /**
  * Created by Sheldon on 2016/3/3.
  */
-public class SecondFragment extends BaseFragment implements View.OnClickListener{
+public class SecondFragment extends BaseFragment implements View.OnClickListener, RefreshInterface{
 
     private PtrClassicFrameLayout ptrFrameLayout;
     private ListView listView;
@@ -256,11 +257,6 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public void refresh() {
-        refreshList();
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.star_doing_text:
@@ -297,5 +293,10 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
         currentMoreList.addAll(doneMoreList);
 
         itemAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void refresh() {
+        refreshList();
     }
 }

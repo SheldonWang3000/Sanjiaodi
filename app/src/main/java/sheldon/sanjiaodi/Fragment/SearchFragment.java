@@ -103,11 +103,6 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
     }
 
     @Override
-    public void refresh() {
-
-    }
-
-    @Override
     public void onClick(View v) {
         SJDLog.i("click", v.getId() + "");
         Intent i = new Intent();

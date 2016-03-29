@@ -56,6 +56,4 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initData(Bundle savedInstanceState);
 
 
-    public abstract void refresh();
-
 }

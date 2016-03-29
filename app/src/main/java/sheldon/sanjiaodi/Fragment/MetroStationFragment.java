@@ -27,8 +27,4 @@ public class MetroStationFragment extends BaseFragment{
 
     }
 
-    @Override
-    public void refresh() {
-
-    }
 }

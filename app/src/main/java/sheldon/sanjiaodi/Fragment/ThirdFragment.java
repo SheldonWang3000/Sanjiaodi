@@ -115,12 +115,6 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
-    public void refresh() {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
     public void onClick(View v) {
         Intent i = new Intent();
         switch (v.getId()) {
