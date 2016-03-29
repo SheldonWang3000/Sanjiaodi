@@ -129,7 +129,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
 
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
-                refreshList();
+                refresh();
             }
         });
 
@@ -152,7 +152,8 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
         return "Second";
     }
 
-    private void refreshList() {
+    @Override
+    public void refresh() {
         closeAll();
         loadMoreListViewContainer.loadMoreFinish(true, true);
         String uid = null;
@@ -253,7 +254,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
                 e.printStackTrace();
             }
         }
-        refreshList();
+        refresh();
     }
 
     @Override
@@ -295,8 +296,4 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
         itemAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void refresh() {
-        refreshList();
-    }
 }

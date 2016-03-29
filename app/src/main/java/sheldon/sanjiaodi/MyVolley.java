@@ -184,6 +184,15 @@ public class MyVolley {
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }
 
+    public static void getAttend(Context context, String uid, Response.Listener callback,
+                                     Response.ErrorListener errorListener) {
+        //TODO 应该正常，待测试
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/myevent_api/lora/attend/uid/"
+                + uid + ".html";
+        SJDLog.i("MyVolley", url);
+        MyVolley.getInstance(context).getArray(url, callback, errorListener);
+    }
+
     public static void collect(Context context, String uid, String id,
                                Response.Listener callback,
                                Response.ErrorListener errorListener) {
