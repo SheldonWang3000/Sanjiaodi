@@ -9,7 +9,13 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.daimajia.swipe.util.Attributes;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +28,7 @@ import sheldon.sanjiaodi.Activity.TagActivity;
 import sheldon.sanjiaodi.BaseFragment;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
 import sheldon.sanjiaodi.ListItem.ItemData;
+import sheldon.sanjiaodi.MyVolley;
 import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.SJDLog;
 
@@ -32,8 +39,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
 
     private ListView listView;
     private ItemAdapter itemAdapter;
-    private List<ItemData> stringList;
-    private TextView[] tags;
+    private List<ItemData> itemList;
     private Map<Integer, TagData> tagDataMap;
     private TagData[] datas;
     private RelativeLayout process;
@@ -42,11 +48,15 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
     @Override
     protected View initView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_search, null);
-        listView = (ListView) view.findViewById(R.id.hot_list_view);
+
         ((TextView) view.findViewById(R.id.header_text)).setText("活动标签");
+
+        listView = (ListView) view.findViewById(R.id.hot_list_view);
         process = (RelativeLayout) view.findViewById(R.id.loading);
-        stringList = new ArrayList<>();
-        itemAdapter = new ItemAdapter(stringList, getContext());
+        process.setVisibility(View.VISIBLE);
+
+        itemList = new ArrayList<>();
+        itemAdapter = new ItemAdapter(itemList, getContext());
         listView.setAdapter(itemAdapter);
         itemAdapter.setMode(Attributes.Mode.Single);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,7 +66,11 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                 if (openPosition != -1) {
                     itemAdapter.closeItem(openPosition);
                 } else {
+                    SJDLog.i("onListClick", position);
                     Intent i = new Intent();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("item", itemList.get(position));
+                    i.putExtras(bundle);
                     i.setClass(getContext(), ContentActivity.class);
                     startActivity(i);
                 }
@@ -64,15 +78,15 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
             }
         });
 
-        tags = new TextView[8];
         datas = new TagData[8];
         tagDataMap = new HashMap<>();
         for (int i = 1; i <= 8; ++i) {
             int resource = getResources().getIdentifier("hot_tag_" + i,
                     "id", getContext().getPackageName());
-            tags[i - 1] = (TextView) view.findViewById(resource);
-            tags[i - 1].setOnClickListener(this);
+            TextView tmpTextView = (TextView) view.findViewById(resource);
+            tmpTextView.setOnClickListener(this);
             TagData tmpData = new TagData();
+            tmpData.tagView = tmpTextView;
             datas[i - 1] = tmpData;
             tagDataMap.put(resource, tmpData);
         }
@@ -88,18 +102,62 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
     @Override
     protected void initData(Bundle savedInstanceState) {
 
-        for (int i = 0; i < 5; ++i)
-        {
-//            stringList.add(String.valueOf(i));
-        }
+        MyVolley.getTag(context,
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        JSONArray array = (JSONArray) response;
+                        try {
+                            for (int i = 0; i < array.length(); ++i) {
+                                datas[i].title = ((JSONObject) array.get(i)).getString("tag");
+                                datas[i].id = ((JSONObject) array.get(i)).getString("id");
+                                datas[i].tagView.setText(datas[i].title);
+                            }
+                        } catch (JSONException ignored) {
+                            SJDLog.w("tagResponse", ignored.toString());
+                            ignored.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        SJDLog.w("getTagError", error);
+                    }
+                });
 
-        itemAdapter.notifyDataSetChanged();
+        MyVolley.getHotActivity(context,
+                new Response.Listener() {
+                    @Override
+                    public void onResponse(Object response) {
+                        JSONArray array = (JSONArray) response;
+                        try {
+                            for (int i = 0; i < array.length(); ++i) {
+                                JSONObject tmp = (JSONObject) array.get(i);
+                                ItemData tmpItem = new ItemData(tmp.getString("id"), tmp.getString("image_big"),
+                                        tmp.getString("image_big"), tmp.getString("title"), tmp.getString("sTime"),
+                                        tmp.getString("eTime"), tmp.getString("update_time"),
+                                        tmp.getString("deadline"), tmp.getString("is_sign"), tmp.getString("explain"),
+                                        tmp.getBoolean("collect")
+                                );
+                                itemList.add(tmpItem);
+                            }
+                        } catch (JSONException jsonError) {
+                            SJDLog.w("hotActivityResponseError", jsonError);
+                            jsonError.printStackTrace();
+                        }
+                        process.setVisibility(View.GONE);
+                        itemAdapter.notifyDataSetChanged();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        SJDLog.w("getHotError", error);
+                    }
+                });
 
-        for (int i = 0; i < 8; ++i) {
-            tags[i].setText("" + i);
-            datas[i].title = "" + i;
-            datas[i].id = 100 + i;
-        }
+
     }
 
     @Override
@@ -111,29 +169,11 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         i.putExtra("id", tmp.id);
         i.setClass(getContext(), TagActivity.class);
         startActivity(i);
-        switch (v.getId()) {
-            case R.id.hot_tag_1:
-                break;
-            case R.id.hot_tag_2:
-                break;
-            case R.id.hot_tag_3:
-                break;
-            case R.id.hot_tag_4:
-                break;
-            case R.id.hot_tag_5:
-                break;
-            case R.id.hot_tag_6:
-                break;
-            case R.id.hot_tag_7:
-                break;
-            case R.id.hot_tag_8:
-                break;
-            default:
-        }
     }
 
     private class TagData {
-        public int id;
+        public String id;
         public String title;
+        public TextView tagView;
     }
 }

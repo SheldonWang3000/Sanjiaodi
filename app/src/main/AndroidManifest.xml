@@ -37,7 +37,7 @@
         <activity android:name=".Activity.InfoSampleActivity" />
         <activity android:name=".Activity.OfficeActivity" />
         <activity android:name=".Activity.MetroActivity" />
-        <activity android:name=".Activity.ParticipateActivity" />
+        <activity android:name=".Activity.AttendActivity" />
         <activity android:name=".Activity.MyselfActivity" />
         <activity
             android:name=".Activity.PhoneActivity"

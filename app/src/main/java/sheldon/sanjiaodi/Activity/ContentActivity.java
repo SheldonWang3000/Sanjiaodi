@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ImageView;
@@ -82,7 +83,7 @@ public class ContentActivity extends Activity {
     private void initData() {
         url = item.bigUrl;
 //        process.setVisibility(View.GONE);
-        if (item.sign.equals("0")) {
+        if (item.sign.equals("0") || TextUtils.isEmpty(item.sign) || item.sign.equals("null")) {
             signButton.setVisibility(View.GONE);
             deadlineText.setVisibility(View.GONE);
         }else {

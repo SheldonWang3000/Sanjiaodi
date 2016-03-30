@@ -67,7 +67,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
 
         ptrFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.star_ptr_frame);
         ptrFrameLayout.disableWhenHorizontalMove(true);
-        ptrFrameLayout.setResistance(4.0f);
+        ptrFrameLayout.setResistance(4.3f);
 
         listView = (ListView) view.findViewById(R.id.star_list_view);
         process = (RelativeLayout) view.findViewById(R.id.loading);

@@ -8,10 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import sheldon.sanjiaodi.Activity.AttendActivity;
 import sheldon.sanjiaodi.Activity.LoginActivity;
 import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.Activity.MyselfActivity;
-import sheldon.sanjiaodi.Activity.ParticipateActivity;
 import sheldon.sanjiaodi.Activity.PasswordActivity;
 import sheldon.sanjiaodi.Activity.PhoneActivity;
 import sheldon.sanjiaodi.BaseFragment;
@@ -59,7 +59,7 @@ public class ForthFragment extends BaseFragment implements View.OnClickListener{
         Intent i = new Intent();
         switch (v.getId()) {
             case R.id.btn_part:
-                i.setClass(getActivity(), ParticipateActivity.class);
+                i.setClass(getActivity(), AttendActivity.class);
                 startActivity(i);
                 break;
             case R.id.btn_myself:

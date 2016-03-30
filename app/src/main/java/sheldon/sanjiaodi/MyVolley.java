@@ -210,6 +210,28 @@ public class MyVolley {
         SJDLog.i("Volley_collect", url);
         MyVolley.getInstance(context).getString(url, callback, errorListener);
     }
+    public static void getTag(Context context, Response.Listener callback,
+                              Response.ErrorListener errorListener) {
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/hottag/num/8.html";
+        SJDLog.i("getTagVolley", url);
+        MyVolley.getInstance(context).getArray(url, callback, errorListener);
+    }
+
+    public static void getHotActivity(Context context, Response.Listener callback,
+                                      Response.ErrorListener errorListener) {
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/gethotactivity.html";
+        SJDLog.i("getHotActivityVolley", url);
+        MyVolley.getInstance(context).getArray(url, callback, errorListener);
+    }
+
+    public static void getActivityByTag(Context context, String id,
+                                        Response.Listener callback,
+                                        Response.ErrorListener errorListener) {
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/getByTag/tag_id/"
+                + id + ".html";
+        SJDLog.i("getActivityByTag", url);
+        MyVolley.getInstance(context).getArray(url, callback, errorListener);
+    }
 
     public void uploadImage(String url, String location,
                             Response.Listener callback,

@@ -32,6 +32,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import sheldon.sanjiaodi.Activity.ContentActivity;
+import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.BaseFragment;
 import sheldon.sanjiaodi.Info;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
@@ -56,14 +57,14 @@ public class FirstFragment extends BaseFragment {
     @Override
     protected View initView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_first, null);
-
+        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) getActivity());
         ((TextView) view.findViewById(R.id.header_text)).setText("三角地");
 
         process = (RelativeLayout) view.findViewById(R.id.loading);
         process.setVisibility(View.VISIBLE);
         ptrFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.ptr_frame);
         ptrFrameLayout.disableWhenHorizontalMove(true);
-        ptrFrameLayout.setResistance(4.5f);
+        ptrFrameLayout.setResistance(4.3f);
         listView = (ListView) view.findViewById(R.id.list_view);
 
         loadMoreListViewContainer = (LoadMoreListViewContainer) view.findViewById(R.id.load_more_list_view_container);

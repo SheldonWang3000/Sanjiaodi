@@ -98,7 +98,7 @@ public class AttendActivity extends Activity implements View.OnClickListener, Re
         currentList = new ArrayList<>();
         currentMoreList = new ArrayList<>();
 
-        itemAdapter = new ItemAdapter(currentList, this);
+        itemAdapter = new ItemAdapter(currentList, this, this);
         listView.setAdapter(itemAdapter);
         itemAdapter.setMode(Attributes.Mode.Single);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

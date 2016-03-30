@@ -78,7 +78,7 @@
     <statePointEntry>
       <state      
         class = "com.android.tools.idea.editors.navigation.model.ActivityState"      
-        className = "sheldon.sanjiaodi.Activity.ParticipateActivity"/>
+        className = "sheldon.sanjiaodi.Activity.AttendActivity"/>
       <point      
         x = "950"      
         y = "550"/>
