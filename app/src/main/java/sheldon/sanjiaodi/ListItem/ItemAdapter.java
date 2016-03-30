@@ -1,7 +1,11 @@
 package sheldon.sanjiaodi.ListItem;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 import sheldon.sanjiaodi.Activity.ImageActivity;
+import sheldon.sanjiaodi.Activity.LoginActivity;
 import sheldon.sanjiaodi.Info;
 import sheldon.sanjiaodi.MyVolley;
 import sheldon.sanjiaodi.R;
@@ -134,6 +139,19 @@ public class ItemAdapter extends BaseSwipeAdapter {
             public void onClick(View view) {
                 final TextView textView = (TextView) view.findViewById(R.id.swipe_menu_0);
                 String str = textView.getText().toString();
+                String uid = null;
+                try {
+                    uid = Info.getUid(context);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (TextUtils.isEmpty(uid)) {
+                    //TODO 登录异常
+                }
+                if (uid.equals("-1")) {
+                    askForLogin();
+                    return;
+                }
                 switch (str) {
                     case "收藏":
                         try {
@@ -199,6 +217,27 @@ public class ItemAdapter extends BaseSwipeAdapter {
                 }
             }
         });
+    }
+
+    private void askForLogin() {
+        SJDLog.w("MainActivity", "not login");
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false)
+                .setTitle("您还没有登录")
+                .setMessage("请先登录")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent();
+                        i.setClass(context, LoginActivity.class);
+                        context.startActivity(i);
+                        ((Activity)context).finishAffinity();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+        builder.create().show();
     }
 
 }

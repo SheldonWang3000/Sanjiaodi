@@ -217,18 +217,19 @@ public class MyVolley {
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }
 
-    public static void getHotActivity(Context context, Response.Listener callback,
+    public static void getHotActivity(Context context, String uid, Response.Listener callback,
                                       Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/gethotactivity.html";
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/gethotactivity/uid/"
+                + uid + ".html";
         SJDLog.i("getHotActivityVolley", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }
 
-    public static void getActivityByTag(Context context, String id,
+    public static void getActivityByTag(Context context, String id, String uid,
                                         Response.Listener callback,
                                         Response.ErrorListener errorListener) {
         String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/getByTag/tag_id/"
-                + id + ".html";
+                + id + "/uid/" + uid + ".html";
         SJDLog.i("getActivityByTag", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }

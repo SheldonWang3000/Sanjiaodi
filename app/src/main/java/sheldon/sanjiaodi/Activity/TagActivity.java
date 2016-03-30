@@ -31,6 +31,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import sheldon.sanjiaodi.Info;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
 import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.MyVolley;
@@ -142,9 +143,6 @@ public class TagActivity extends Activity {
 
     private void initData() {
 
-        Toast toast = Toast.makeText(this, "" + id, Toast.LENGTH_SHORT);
-        toast.show();
-
         SharedPreferences s = getSharedPreferences("sjd", Context.MODE_PRIVATE);
         String oldTagContent = s.getString("tag" + id, "");
         SJDLog.i("initTagContent", oldTagContent);
@@ -185,7 +183,16 @@ public class TagActivity extends Activity {
     private void refreshList(String id) {
         closeAll();
         loadMoreListViewContainer.loadMoreFinish(true, true);
-        MyVolley.getActivityByTag(this, id,
+        String uid = null;
+        try {
+            uid = Info.getUid(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (TextUtils.isEmpty(uid)) {
+            //TODO 登录异常
+        }
+        MyVolley.getActivityByTag(this, id, uid,
                 new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {

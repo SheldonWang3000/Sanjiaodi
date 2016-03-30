@@ -2,6 +2,7 @@ package sheldon.sanjiaodi.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +27,7 @@ import sheldon.sanjiaodi.Activity.ContentActivity;
 import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.Activity.TagActivity;
 import sheldon.sanjiaodi.BaseFragment;
+import sheldon.sanjiaodi.Info;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
 import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.MyVolley;
@@ -125,8 +127,16 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
                         SJDLog.w("getTagError", error);
                     }
                 });
-
-        MyVolley.getHotActivity(context,
+        String uid = null;
+        try {
+            uid = Info.getUid(context);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (TextUtils.isEmpty(uid)) {
+            //TODO 登录异常
+        }
+        MyVolley.getHotActivity(context, uid,
                 new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {

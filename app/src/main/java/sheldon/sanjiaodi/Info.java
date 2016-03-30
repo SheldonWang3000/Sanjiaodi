@@ -24,4 +24,8 @@ public class Info {
             return uid;
         }
     }
+
+    public static void removeUid() {
+        uid = null;
+    }
 }

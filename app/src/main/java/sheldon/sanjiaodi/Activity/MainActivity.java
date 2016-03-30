@@ -1,12 +1,16 @@
 package sheldon.sanjiaodi.Activity;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 
@@ -21,6 +25,7 @@ import sheldon.sanjiaodi.Fragment.ForthFragment;
 import sheldon.sanjiaodi.Fragment.MenuFragment;
 import sheldon.sanjiaodi.Fragment.SecondFragment;
 import sheldon.sanjiaodi.Fragment.ThirdFragment;
+import sheldon.sanjiaodi.Info;
 import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.SJDLog;
 
@@ -34,6 +39,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
 
     private RadioGroup radioGroup;
 
+    private int clickedButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,22 +68,49 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
             }
         });
 
+        clickedButton = R.id.bottom_button_0;
         radioGroup = (RadioGroup) findViewById(R.id.bottom_button_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                String uid = null;
+                if (checkedId == clickedButton) {
+                    return;
+                }
                 switch (checkedId) {
                     case R.id.bottom_button_0:
                         switchContent(new FirstFragment());
+                        clickedButton = R.id.bottom_button_0;
                         break;
                     case R.id.bottom_button_1:
-                        switchContent(new SecondFragment());
+                        try {
+                            uid = Info.getUid(MainActivity.this);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (uid == null || uid.equals("-1")) {
+                            askForLogin();
+                        } else {
+                            switchContent(new SecondFragment());
+                            clickedButton = R.id.bottom_button_1;
+                        }
                         break;
                     case R.id.bottom_button_2:
                         switchContent(new ThirdFragment());
+                        clickedButton = R.id.bottom_button_2;
                         break;
                     case R.id.bottom_button_3:
-                        switchContent(new ForthFragment());
+                        try {
+                            uid = Info.getUid(MainActivity.this);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (uid == null || uid.equals("-1")) {
+                            askForLogin();
+                        } else {
+                            switchContent(new ForthFragment());
+                            clickedButton = R.id.bottom_button_3;
+                        }
                         break;
                     default:
                         break;
@@ -99,6 +132,28 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         slidingMenu.setBehindScrollScale(0.0f);
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         slidingMenu.setMode(SlidingMenu.LEFT);
+    }
+
+    private void askForLogin() {
+        SJDLog.w("MainActivity", "not login");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false)
+                .setTitle("您还没有登录")
+                .setMessage("请先登录")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent();
+                        i.setClass(MainActivity.this, LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        ((RadioButton)radioGroup.findViewById(clickedButton)).setChecked(true);
+                    }
+                });
+        builder.create().show();
     }
 
     public void switchContent(Fragment fragment) {
@@ -153,7 +208,6 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         return hasNavigationBar;
     }
