@@ -39,7 +39,7 @@ import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.RefreshInterface;
 import sheldon.sanjiaodi.SJDLog;
 
-public class ParticipateActivity extends Activity implements View.OnClickListener, RefreshInterface {
+public class AttendActivity extends Activity implements View.OnClickListener, RefreshInterface {
 
     private PtrClassicFrameLayout ptrFrameLayout;
     private ListView listView;
@@ -112,7 +112,7 @@ public class ParticipateActivity extends Activity implements View.OnClickListene
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("item", currentList.get(position));
                     i.putExtras(bundle);
-                    i.setClass(ParticipateActivity.this, ContentActivity.class);
+                    i.setClass(AttendActivity.this, ContentActivity.class);
                     startActivity(i);
                 }
 
