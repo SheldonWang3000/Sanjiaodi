@@ -25,7 +25,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener{
 
         ((TextView)view.findViewById(R.id.header_text)).setText(R.string.third_title);
 
-        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) getActivity());
+        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) context);
         view.findViewById(R.id.info_shopping).setOnClickListener(this);
         view.findViewById(R.id.info_house).setOnClickListener(this);
         view.findViewById(R.id.info_sports).setOnClickListener(this);

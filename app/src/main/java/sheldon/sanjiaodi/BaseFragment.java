@@ -3,6 +3,8 @@ package sheldon.sanjiaodi;
 /**
  * Created by Sheldon on 2016/3/3.
  */
+
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,7 +26,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = getActivity();
+//        context = getActivity();
     }
 
     @Override
@@ -54,5 +56,12 @@ public abstract class BaseFragment extends Fragment {
      */
     protected abstract void initData(Bundle savedInstanceState);
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof Activity) {
+            this.context = context;
+        }
+    }
 
 }

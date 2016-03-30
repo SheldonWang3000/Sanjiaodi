@@ -29,7 +29,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="社团"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textColor="@android:color/white"/>
         <RadioButton
             android:id="@+id/content_type_2"
@@ -39,7 +39,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="学术"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textColor="@android:color/white"/>
         <RadioButton
             android:id="@+id/content_type_3"
@@ -49,7 +49,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="校外"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textColor="@android:color/white"/>
         <RadioButton
             android:id="@+id/content_type_4"
@@ -59,7 +59,7 @@
             android:button="@null"
             android:gravity="center"
             android:text="教师"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textColor="@android:color/white"/>
 
     </RadioGroup>

@@ -65,7 +65,7 @@ public class FirstFragment extends BaseFragment {
     @Override
     protected View initView(LayoutInflater inflater) {
         View view = inflater.inflate(R.layout.fragment_first, null);
-        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) getActivity());
+        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity)context);
         ((TextView) view.findViewById(R.id.header_text)).setText("三角地");
 
         process = (RelativeLayout) view.findViewById(R.id.loading);
@@ -169,7 +169,7 @@ public class FirstFragment extends BaseFragment {
     private void changeSelectedFontSize() {
         for (int i = 0; i < typeGroup.getChildCount(); ++i) {
             RadioButton tmp = (RadioButton) typeGroup.getChildAt(i);
-            tmp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+            tmp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
         }
         switch(typeId) {
             case 0:
@@ -233,7 +233,7 @@ public class FirstFragment extends BaseFragment {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        SharedPreferences s = getActivity().getSharedPreferences("sjd", Context.MODE_PRIVATE);
+        SharedPreferences s = context.getSharedPreferences("sjd", Context.MODE_PRIVATE);
         String oldContent = s.getString("content", "");
         SJDLog.i("initData", oldContent);
         if (!TextUtils.isEmpty(oldContent)) {
@@ -266,7 +266,7 @@ public class FirstFragment extends BaseFragment {
                         try {
                             JSONArray array = (JSONArray) response;
                             SJDLog.i("refreshList", array.toString());
-                            SharedPreferences s = getActivity().getSharedPreferences("sjd", Context.MODE_PRIVATE);
+                            SharedPreferences s = context.getSharedPreferences("sjd", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = s.edit();
                             editor.putString("content", response.toString());
                             editor.commit();

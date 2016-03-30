@@ -133,7 +133,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
             }
         });
 
-        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) getActivity());
+        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) context);
         view.findViewById(R.id.star_doing_text).setOnClickListener(this);
         view.findViewById(R.id.star_done_text).setOnClickListener(this);
 
@@ -172,7 +172,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
                         try {
                             JSONArray array = (JSONArray) response;
                             SJDLog.i("refreshCollectionList", array.toString());
-                            SharedPreferences s = getActivity().getSharedPreferences("sjd", Context.MODE_PRIVATE);
+                            SharedPreferences s = context.getSharedPreferences("sjd", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = s.edit();
                             editor.putString("collection", response.toString());
                             editor.commit();
@@ -243,7 +243,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        SharedPreferences s = getActivity().getSharedPreferences("sjd", Context.MODE_PRIVATE);
+        SharedPreferences s = context.getSharedPreferences("sjd", Context.MODE_PRIVATE);
         String oldCollection = s.getString("collection", "");
         SJDLog.i("initCollectionData", oldCollection);
         if (!TextUtils.isEmpty(oldCollection)) {

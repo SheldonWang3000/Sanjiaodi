@@ -127,7 +127,7 @@ public class MainActivity extends SlidingFragmentActivity implements View.OnClic
         else {
             switchContent((Fragment)savedInstanceState.get("save"));
         }
-        slidingMenu.setBehindWidth(800);
+        slidingMenu.setBehindWidth(750);
         slidingMenu.setFadeDegree(0.35f);
         slidingMenu.setBehindScrollScale(0.0f);
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);

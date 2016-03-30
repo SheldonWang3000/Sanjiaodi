@@ -1,5 +1,6 @@
 package sheldon.sanjiaodi.Fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,7 +35,7 @@ public class ForthFragment extends BaseFragment implements View.OnClickListener{
 
 //        process = (RelativeLayout) view.findViewById(R.id.loading);
         userName = (TextView) view.findViewById(R.id.username_text);
-        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) getActivity());
+        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) context);
         view.findViewById(R.id.btn_password).setOnClickListener(this);
         view.findViewById(R.id.btn_part).setOnClickListener(this);
         view.findViewById(R.id.btn_phone).setOnClickListener(this);
@@ -50,7 +51,7 @@ public class ForthFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        SharedPreferences s = getActivity().getSharedPreferences("sjd", Context.MODE_PRIVATE);
+        SharedPreferences s = context.getSharedPreferences("sjd", Context.MODE_PRIVATE);
         userName.setText(s.getString("realname", "三角地"));
     }
 
@@ -59,29 +60,29 @@ public class ForthFragment extends BaseFragment implements View.OnClickListener{
         Intent i = new Intent();
         switch (v.getId()) {
             case R.id.btn_part:
-                i.setClass(getActivity(), AttendActivity.class);
+                i.setClass(context, AttendActivity.class);
                 startActivity(i);
                 break;
             case R.id.btn_myself:
-                i.setClass(getActivity(), MyselfActivity.class);
+                i.setClass(context, MyselfActivity.class);
                 startActivity(i);
                 break;
             case R.id.btn_password:
-                i.setClass(getActivity(), PasswordActivity.class);
+                i.setClass(context, PasswordActivity.class);
                 startActivity(i);
                 break;
             case R.id.btn_phone:
-                i.setClass(getActivity(), PhoneActivity.class);
+                i.setClass(context, PhoneActivity.class);
                 startActivity(i);
                 break;
             case R.id.btn_logout:
-                SharedPreferences s = getActivity().getSharedPreferences("sjd", Context.MODE_PRIVATE);
+                SharedPreferences s = context.getSharedPreferences("sjd", Context.MODE_PRIVATE);
                 SharedPreferences.Editor e = s.edit();
                 e.clear();
                 e.commit();
                 i.setClass(getContext(), LoginActivity.class);
                 startActivity(i);
-                getActivity().finish();
+                ((Activity)context).finish();
                 break;
             default:
                 break;

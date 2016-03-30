@@ -92,7 +92,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
             datas[i - 1] = tmpData;
             tagDataMap.put(resource, tmpData);
         }
-        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) getActivity());
+        view.findViewById(R.id.menu_button).setOnClickListener((MainActivity) context);
         return view;
     }
 
