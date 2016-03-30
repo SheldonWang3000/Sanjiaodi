@@ -83,4 +83,10 @@
         <item name="android:textSize">14dp</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="type_selected">
+        <item name="android:textSize">20dp</item>
+    </style>
+    <style name="type_select">
+        <item name="android:textSize">10dp</item>
+    </style>
 </resources>

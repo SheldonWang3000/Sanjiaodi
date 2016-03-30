@@ -34,15 +34,16 @@ import sheldon.sanjiaodi.SJDLog;
  */
 public class ItemAdapter extends BaseSwipeAdapter {
 
-    private List<ItemData> list;
+    private List list;
     private Context context;
     private RefreshInterface listener;
 
-    public ItemAdapter(List<ItemData> list, Context context) {
+    public ItemAdapter(List list, Context context) {
         this.list = list;
         this.context = context;
         this.listener = null;
     }
+
     public ItemAdapter(List<ItemData> list, Context context, RefreshInterface listener) {
         this.list = list;
         this.context = context;
@@ -74,7 +75,7 @@ public class ItemAdapter extends BaseSwipeAdapter {
     }
 
     private String getDateFromTime(int position) {
-        Long time = Long.valueOf(list.get(position).publishTime);
+        Long time = Long.valueOf(((ItemData)list.get(position)).publishTime);
         Date date = new Date(time * 1000);
         return "开始时间：" + DateFormat.format("yyyy-MM-dd(EEEE)", date).toString();
     }
@@ -86,7 +87,7 @@ public class ItemAdapter extends BaseSwipeAdapter {
         int week = day * 7;
         int month = day * 30;
         long now = new Date().getTime() / 1000;
-        long diff = now - Long.valueOf(list.get(position).publishTime);
+        long diff = now - Long.valueOf(((ItemData)list.get(position)).publishTime);
         int diffMonth = (int) (diff / month);
         int diffWeek = (int) (diff / week);
         int diffDay = (int) (diff / day);
@@ -115,14 +116,14 @@ public class ItemAdapter extends BaseSwipeAdapter {
         ((TextView) convertView.findViewById(R.id.time_text))
                 .setText(getDateDiff(position));
         ((TextView) convertView.findViewById(R.id.list_content_title))
-                .setText(list.get(position).title);
+                .setText(((ItemData)list.get(position)).title);
         ((TextView) convertView.findViewById(R.id.start_time_text))
                 .setText(getDateFromTime(position));
         ((TextView) convertView.findViewById(R.id.swipe_menu_0))
-                .setText(list.get(position).collect ? "已收藏" : "收藏");
+                .setText(((ItemData)list.get(position)).collect ? "已收藏" : "收藏");
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.list_small_image);
-        final String smallUrl = list.get(position).smallUrl;
+        final String smallUrl = ((ItemData)list.get(position)).smallUrl;
 
         MyVolley.getImage(context, imageView, smallUrl);
         convertView.findViewById(R.id.list_small_image).setOnClickListener(new View.OnClickListener() {
@@ -155,7 +156,7 @@ public class ItemAdapter extends BaseSwipeAdapter {
                 switch (str) {
                     case "收藏":
                         try {
-                            MyVolley.collect(context, Info.getUid(context), list.get(position).id,
+                            MyVolley.collect(context, Info.getUid(context), ((ItemData)list.get(position)).id,
                                     new Response.Listener() {
                                         @Override
                                         public void onResponse(Object response) {
@@ -185,7 +186,7 @@ public class ItemAdapter extends BaseSwipeAdapter {
                         break;
                     case "已收藏":
                         try {
-                            MyVolley.unCollect(context, Info.getUid(context), list.get(position).id,
+                            MyVolley.unCollect(context, Info.getUid(context), ((ItemData)list.get(position)).id,
                                     new Response.Listener() {
                                         @Override
                                         public void onResponse(Object response) {

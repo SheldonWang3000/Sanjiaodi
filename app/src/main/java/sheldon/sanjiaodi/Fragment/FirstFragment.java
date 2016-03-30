@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +38,8 @@ import sheldon.sanjiaodi.Activity.ContentActivity;
 import sheldon.sanjiaodi.Activity.MainActivity;
 import sheldon.sanjiaodi.BaseFragment;
 import sheldon.sanjiaodi.Info;
+import sheldon.sanjiaodi.ListItem.ContentData;
 import sheldon.sanjiaodi.ListItem.ItemAdapter;
-import sheldon.sanjiaodi.ListItem.ItemData;
 import sheldon.sanjiaodi.MyVolley;
 import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.SJDLog;
@@ -49,10 +52,15 @@ public class FirstFragment extends BaseFragment {
     private ListView listView;
     private PtrClassicFrameLayout ptrFrameLayout;
     private ItemAdapter itemAdapter;
-    private List<ItemData> itemList;
-    private List<ItemData> moreItemList;
+    private List<ContentData> itemList;
+    private List<ContentData> moreItemList;
+    private List<ContentData> currentItemList;
+    private List<ContentData> currentMoreItemList;
     private RelativeLayout process;
     private LoadMoreListViewContainer loadMoreListViewContainer;
+    private RadioGroup typeGroup;
+    //0代表全部，1代表社团，4代表学术,7代表校外,6代表教师
+    private int typeId = 0;
 
     @Override
     protected View initView(LayoutInflater inflater) {
@@ -61,11 +69,41 @@ public class FirstFragment extends BaseFragment {
         ((TextView) view.findViewById(R.id.header_text)).setText("三角地");
 
         process = (RelativeLayout) view.findViewById(R.id.loading);
+        typeGroup = (RadioGroup) view.findViewById(R.id.btn_content_type);
         process.setVisibility(View.VISIBLE);
         ptrFrameLayout = (PtrClassicFrameLayout) view.findViewById(R.id.ptr_frame);
         ptrFrameLayout.disableWhenHorizontalMove(true);
         ptrFrameLayout.setResistance(4.3f);
         listView = (ListView) view.findViewById(R.id.list_view);
+
+        typeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.content_type_0:
+                        typeId = 0;
+                        break;
+                    case R.id.content_type_1:
+                        typeId = 1;
+                        break;
+                    case R.id.content_type_2:
+                        typeId = 4;
+                        break;
+                    case R.id.content_type_3:
+                        typeId = 7;
+                        break;
+                    case R.id.content_type_4:
+                        typeId = 6;
+                        break;
+                    default:
+                        break;
+                }
+                changeSelectedFontSize();
+                switchType();
+                listView.setSelection(0);
+                loadMoreListViewContainer.loadMoreFinish(true, true);
+            }
+        });
 
         loadMoreListViewContainer = (LoadMoreListViewContainer) view.findViewById(R.id.load_more_list_view_container);
         loadMoreListViewContainer.useDefaultHeader();
@@ -74,22 +112,26 @@ public class FirstFragment extends BaseFragment {
             public void onLoadMore(LoadMoreContainer loadMoreContainer) {
                 closeAll();
                 for (int i = 0; i < 3; ++i) {
-                    if (moreItemList.isEmpty()) {
+                    if (currentMoreItemList.isEmpty()) {
                         loadMoreContainer.loadMoreFinish(false, false);
                         break;
                     }
-                    itemList.add(moreItemList.get(0));
-                    moreItemList.remove(0);
+                    currentItemList.add(currentMoreItemList.get(0));
+                    currentMoreItemList.remove(0);
                 }
-                SJDLog.i("size", itemList.size() + ":" + moreItemList.size());
+                SJDLog.i("size", currentItemList.size() + ":" + currentMoreItemList.size());
                 itemAdapter.notifyDataSetChanged();
-                loadMoreListViewContainer.loadMoreFinish(!moreItemList.isEmpty(), !moreItemList.isEmpty());
+                loadMoreListViewContainer.loadMoreFinish(!currentMoreItemList.isEmpty(),
+                        !currentMoreItemList.isEmpty());
             }
         });
 
         itemList = new ArrayList<>();
         moreItemList = new ArrayList<>();
-        itemAdapter = new ItemAdapter(itemList, getContext());
+        currentItemList = new ArrayList<>();
+        currentMoreItemList = new ArrayList<>();
+
+        itemAdapter = new ItemAdapter(currentItemList, getContext());
         listView.setAdapter(itemAdapter);
         itemAdapter.setMode(Attributes.Mode.Single);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -102,7 +144,7 @@ public class FirstFragment extends BaseFragment {
                     SJDLog.i("onListClick", position);
                     Intent i = new Intent();
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("item", itemList.get(position));
+                    bundle.putSerializable("item", currentItemList.get(position));
                     i.putExtras(bundle);
                     i.setClass(getContext(), ContentActivity.class);
                     startActivity(i);
@@ -122,6 +164,66 @@ public class FirstFragment extends BaseFragment {
             }
         });
         return view;
+    }
+
+    private void changeSelectedFontSize() {
+        for (int i = 0; i < typeGroup.getChildCount(); ++i) {
+            RadioButton tmp = (RadioButton) typeGroup.getChildAt(i);
+            tmp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
+        }
+        switch(typeId) {
+            case 0:
+                ((RadioButton)typeGroup.getChildAt(0)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+                break;
+            case 1:
+                ((RadioButton)typeGroup.getChildAt(1)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+                break;
+            case 4:
+                ((RadioButton)typeGroup.getChildAt(2)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+                break;
+            case 7:
+                ((RadioButton)typeGroup.getChildAt(3)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+                break;
+            case 6:
+                ((RadioButton)typeGroup.getChildAt(4)).setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void switchType() {
+        currentItemList.clear();
+        currentMoreItemList.clear();
+        if (typeId == 0) {
+            currentItemList.addAll(itemList);
+            currentMoreItemList.addAll(moreItemList);
+        } else {
+            for (int i = 0; i < itemList.size(); ++i) {
+                ContentData tmp = itemList.get(i);
+                if (tmp.typeId == typeId) {
+                    currentItemList.add(tmp);
+                }
+            }
+            int i = 0;
+            for (; i < moreItemList.size(); ++i) {
+                if (currentItemList.size() < 9) {
+                    ContentData tmp = moreItemList.get(i);
+                    if (tmp.typeId == typeId) {
+                        currentItemList.add(tmp);
+                    }
+                } else {
+                    break;
+                }
+            }
+            for (; i < moreItemList.size(); ++i) {
+                ContentData tmp = moreItemList.get(i);
+                if (tmp.typeId == typeId) {
+                    currentMoreItemList.add(tmp);
+                }
+            }
+        }
+        itemAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -197,24 +299,22 @@ public class FirstFragment extends BaseFragment {
     private void getList(JSONArray array) throws JSONException{
         itemList.clear();
         moreItemList.clear();
-        List<ItemData> list = itemList;
+        List<ContentData> list = itemList;
         for (int i = 0; i < array.length(); ++i) {
             JSONObject tmp = (JSONObject) array.get(i);
-            ItemData tmpItem = new ItemData(tmp.getString("id"), tmp.getString("image_big"),
+            ContentData tmpItem = new ContentData(tmp.getString("id"), tmp.getString("image_big"),
                     tmp.getString("image_big"), tmp.getString("title"), tmp.getString("sTime"),
                     tmp.getString("eTime"), tmp.getString("update_time"),
                     tmp.getString("deadline"), tmp.getString("is_sign"), tmp.getString("explain"),
-                    tmp.getBoolean("collect")
-            );
+                    tmp.getBoolean("collect"), tmp.getInt("type"));
             list.add(tmpItem);
             if (i == 9) {
                 list = moreItemList;
             }
         }
-        itemAdapter.notifyDataSetChanged();
+        switchType();
 
-        SJDLog.i("size", itemList.size() + ":" + moreItemList.size());
+        SJDLog.i("size", currentItemList.size() + ":" + currentMoreItemList.size());
     }
-
 
 }

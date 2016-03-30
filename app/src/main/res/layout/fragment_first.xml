@@ -4,9 +4,68 @@
     android:layout_height="match_parent"
     android:background="@color/background_gray">
     <include layout="@layout/header"/>
+    <RadioGroup
+        android:id="@+id/btn_content_type"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/pku_red"
+        android:orientation="horizontal"
+        android:layout_below="@+id/header">
+        <RadioButton
+            android:id="@+id/content_type_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="全部"
+            android:textSize="22dp"
+            android:gravity="center"
+            android:textColor="@android:color/white"/>
+        <RadioButton
+            android:id="@+id/content_type_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="社团"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+        <RadioButton
+            android:id="@+id/content_type_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="学术"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+        <RadioButton
+            android:id="@+id/content_type_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="校外"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+        <RadioButton
+            android:id="@+id/content_type_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="教师"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+
+    </RadioGroup>
     <in.srain.cube.views.ptr.PtrClassicFrameLayout
         android:id="@+id/ptr_frame"
-        android:layout_below="@+id/header"
+        android:layout_below="@+id/btn_content_type"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         <in.srain.cube.views.loadmore.LoadMoreListViewContainer
