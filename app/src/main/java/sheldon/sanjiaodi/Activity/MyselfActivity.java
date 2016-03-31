@@ -59,28 +59,33 @@ public class MyselfActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btn_myself_phone:
                 i.setClass(this, PhoneActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 0);
                 break;
             case R.id.btn_myself_mail:
                 i.putExtra("title", "邮箱");
                 i.putExtra("content", mailText.getText().toString());
                 i.setClass(this, MyselfAlertActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 0);
                 break;
             case R.id.btn_myself_college:
                 i.putExtra("title", "学院");
                 i.putExtra("content", collegeText.getText().toString());
                 i.setClass(this, MyselfAlertActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 0);
                 break;
             case R.id.btn_myself_subject:
                 i.putExtra("title", "专业");
                 i.putExtra("content", subjectText.getText().toString());
                 i.setClass(this, MyselfAlertActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 0);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        initData();
     }
 }

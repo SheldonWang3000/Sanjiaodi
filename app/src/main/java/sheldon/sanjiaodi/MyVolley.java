@@ -268,6 +268,15 @@ public class MyVolley {
         MyVolley.getInstance(context).getString(url, callback, errorListener);
     }
 
+    public static void changeInfo(Context context, int id, String uid, String content,
+                                  Response.Listener callback, Response.ErrorListener errorListener) {
+        //id 2邮箱，3学院，4专业
+        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/member/saveinfo_api/id/"
+                + id + "/uid/" + uid + "/content/" + content + ".html";
+        SJDLog.i("changeInfoVolley", url);
+        MyVolley.getInstance(context).getJson(url, callback, errorListener);
+    }
+
     public void uploadImage(String url, String location,
                             Response.Listener callback,
                             Response.ErrorListener errorListener) {
