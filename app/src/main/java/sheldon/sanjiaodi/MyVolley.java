@@ -225,6 +225,14 @@ public class MyVolley {
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }
 
+    public static void changePassword(Context context, String uid, String oldPassword, String newPassword,
+                                      Response.Listener callback, Response.ErrorListener errorListener) {
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/verify/doChangePassword_api/uid/"
+                + uid + "/old_password/" + oldPassword + "/new_password/" + newPassword + ".html";
+        SJDLog.i("changePasswordVolley", url);
+        MyVolley.getInstance(context).getString(url, callback, errorListener);
+    }
+
     public static void getActivityByTag(Context context, String id, String uid,
                                         Response.Listener callback,
                                         Response.ErrorListener errorListener) {
