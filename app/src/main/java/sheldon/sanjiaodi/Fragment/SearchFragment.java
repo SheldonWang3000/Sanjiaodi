@@ -177,7 +177,7 @@ public class SearchFragment extends BaseFragment implements View.OnClickListener
         TagData tmp = tagDataMap.get(v.getId());
         i.putExtra("title", tmp.title);
         i.putExtra("id", tmp.id);
-        i.setClass(getContext(), TagActivity.class);
+        i.setClass(context, TagActivity.class);
         startActivity(i);
     }
 

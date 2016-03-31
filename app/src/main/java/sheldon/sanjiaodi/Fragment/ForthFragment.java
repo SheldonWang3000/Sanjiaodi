@@ -80,7 +80,7 @@ public class ForthFragment extends BaseFragment implements View.OnClickListener{
                 SharedPreferences.Editor e = s.edit();
                 e.clear();
                 e.commit();
-                i.setClass(getContext(), LoginActivity.class);
+                i.setClass(context, LoginActivity.class);
                 startActivity(i);
                 ((Activity)context).finish();
                 break;

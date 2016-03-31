@@ -101,7 +101,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
         currentList = new ArrayList<>();
         currentMoreList = new ArrayList<>();
 
-        itemAdapter = new ItemAdapter(currentList, getContext(), this);
+        itemAdapter = new ItemAdapter(currentList, context, this);
         listView.setAdapter(itemAdapter);
         itemAdapter.setMode(Attributes.Mode.Single);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -115,7 +115,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("item", currentList.get(position));
                     i.putExtras(bundle);
-                    i.setClass(getContext(), ContentActivity.class);
+                    i.setClass(context, ContentActivity.class);
                     startActivity(i);
                 }
 
@@ -165,7 +165,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
         if (TextUtils.isEmpty(uid)) {
             //TODO 登录异常
         }
-        MyVolley.getCollection(getContext(), uid,
+        MyVolley.getCollection(context, uid,
                 new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {
@@ -189,7 +189,7 @@ public class SecondFragment extends BaseFragment implements View.OnClickListener
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         SJDLog.d("getCollectionError", error);
-                        Toast.makeText(getContext(), "网络错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "网络错误", Toast.LENGTH_SHORT).show();
                         process.setVisibility(View.GONE);
                         ptrFrameLayout.refreshComplete();
                     }

@@ -61,8 +61,8 @@ public class MenuFragment extends Fragment implements OnClickListener {
                 SJDLog.i("menu_click", "menu3");
                 toast.show();
 //                Intent i = new Intent();
-//                i.setClass(getContext(), UploadActivity.class);
-//                getContext().startActivity(i);
+//                i.setClass(context, UploadActivity.class);
+//                context.startActivity(i);
                 break;
             case R.id.sliding_menu4:
                 SJDLog.i("menu_click", "menu4");

@@ -131,7 +131,7 @@ public class FirstFragment extends BaseFragment {
         currentItemList = new ArrayList<>();
         currentMoreItemList = new ArrayList<>();
 
-        itemAdapter = new ItemAdapter(currentItemList, getContext());
+        itemAdapter = new ItemAdapter(currentItemList, context);
         listView.setAdapter(itemAdapter);
         itemAdapter.setMode(Attributes.Mode.Single);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -146,7 +146,7 @@ public class FirstFragment extends BaseFragment {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("item", currentItemList.get(position));
                     i.putExtras(bundle);
-                    i.setClass(getContext(), ContentActivity.class);
+                    i.setClass(context, ContentActivity.class);
                     startActivity(i);
                 }
 
@@ -259,7 +259,7 @@ public class FirstFragment extends BaseFragment {
         if (TextUtils.isEmpty(uid)) {
             //TODO 登录异常
         }
-        MyVolley.getContent(getContext(), uid,
+        MyVolley.getContent(context, uid,
                 new Response.Listener() {
                     @Override
                     public void onResponse(Object response) {
@@ -283,7 +283,7 @@ public class FirstFragment extends BaseFragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         SJDLog.d("getContentError", error);
-                        Toast.makeText(getContext(), "网络错误", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "网络错误", Toast.LENGTH_SHORT).show();
                         process.setVisibility(View.GONE);
                         ptrFrameLayout.refreshComplete();
                     }

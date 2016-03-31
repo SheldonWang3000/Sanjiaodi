@@ -21,7 +21,7 @@ public class OfficeFragment extends BaseFragment{
             public void onClick(View v) {
                 Intent i = new Intent();
                 i.putExtra("resource", R.mipmap.pku_admin);
-                i.setClass(getContext(), ImageActivity.class);
+                i.setClass(context, ImageActivity.class);
                 startActivity(i);
             }
         });
@@ -30,7 +30,7 @@ public class OfficeFragment extends BaseFragment{
             public void onClick(View v) {
                 Intent i = new Intent();
                 i.putExtra("resource", R.mipmap.pku_department);
-                i.setClass(getContext(), ImageActivity.class);
+                i.setClass(context, ImageActivity.class);
                 startActivity(i);
             }
         });

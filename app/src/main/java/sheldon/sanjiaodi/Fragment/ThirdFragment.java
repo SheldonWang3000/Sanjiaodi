@@ -56,7 +56,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener{
 //            @Override
 //            public void onClick(View view) {
 //                process.setVisibility(View.VISIBLE);
-//                MyVolley.getInstance(getContext()).get(
+//                MyVolley.getInstance(context).get(
 //                        "http://192.168.1.102/get.php?id=123",
 //                        new Response.Listener<JSONObject>() {
 //                            @Override
@@ -88,7 +88,7 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener{
 //                Map<String, String> params = new HashMap<String, String>();
 //                params.put("id", "908");
 //                JSONObject jsonObject = new JSONObject(params);
-//                MyVolley.getInstance(getContext()).post(
+//                MyVolley.getInstance(context).post(
 //                        "http://192.168.1.102/post.php",
 //                        jsonObject,
 //                        new Response.Listener<JSONObject>() {
@@ -119,81 +119,81 @@ public class ThirdFragment extends BaseFragment implements View.OnClickListener{
         Intent i = new Intent();
         switch (v.getId()) {
             case R.id.info_shopping:
-                i.setClass(getContext(), ShoppingActivity.class);
+                i.setClass(context, ShoppingActivity.class);
                 break;
             case R.id.info_house:
                 i.putExtra("title", "住宿服务");
                 i.putExtra("sample", R.layout.info_house);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_education:
                 i.putExtra("title", "教学楼与院系");
                 i.putExtra("sample", R.layout.info_education);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_sports:
                 i.putExtra("title", "运动设施");
                 i.putExtra("sample", R.layout.info_sports);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_bus:
                 i.putExtra("title", "公交信息");
                 i.putExtra("sample", R.layout.info_bus);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_station:
                 i.putExtra("title", "公交站");
                 i.putExtra("sample", R.layout.info_station);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_taxi:
                 i.putExtra("title", "出租车");
                 i.putExtra("sample", R.layout.info_taxi);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_metro:
-                i.setClass(getContext(), MetroActivity.class);
+                i.setClass(context, MetroActivity.class);
                 break;
             case R.id.info_bank:
                 i.putExtra("title", "银行服务");
                 i.putExtra("sample", R.layout.info_bank);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_hospital:
                 i.putExtra("title", "医疗服务");
                 i.putExtra("sample", R.layout.info_hopital);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_office:
-                i.setClass(getContext(), OfficeActivity.class);
+                i.setClass(context, OfficeActivity.class);
                 break;
             case R.id.info_pku:
                 i.putExtra("title", "校园地图");
                 i.putExtra("resource", R.mipmap.pku_map);
                 i.putExtra("subtitle", "校园平面图");
                 i.putExtra("sample", R.layout.info_image_sample);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_education_center:
                 i.putExtra("title", "深圳大学城总平面图");
                 i.putExtra("resource", R.mipmap.education_center_map);
                 i.putExtra("subtitle", "大学城平面图");
                 i.putExtra("sample", R.layout.info_image_sample);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_metro_sz:
                 i.putExtra("title", "深圳地铁路线图");
                 i.putExtra("resource", R.mipmap.metro_sz_map);
                 i.putExtra("subtitle", "深圳地铁路线图");
                 i.putExtra("sample", R.layout.info_image_sample);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             case R.id.info_metro_hk:
                 i.putExtra("title", "香港地铁路线图");
                 i.putExtra("resource", R.mipmap.metro_hk_map);
                 i.putExtra("subtitle", "香港地铁路线图");
                 i.putExtra("sample", R.layout.info_image_sample);
-                i.setClass(getContext(), InfoSampleActivity.class);
+                i.setClass(context, InfoSampleActivity.class);
                 break;
             default:
                 break;
