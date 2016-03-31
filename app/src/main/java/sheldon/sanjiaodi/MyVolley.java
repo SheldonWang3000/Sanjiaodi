@@ -260,6 +260,14 @@ public class MyVolley {
         MyVolley.getInstance(context).addToRequestQueue(request);
     }
 
+    public static void getConfirm(Context context, String uid, String phone, String code,
+                                  Response.Listener callback, Response.ErrorListener errorListener) {
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/verify/checkVerify_api/uid/"
+                + uid + "/mobile/" + phone + "/verify_num/" + code + ".html";
+        SJDLog.i("getComfirmVolley", url);
+        MyVolley.getInstance(context).getString(url, callback, errorListener);
+    }
+
     public void uploadImage(String url, String location,
                             Response.Listener callback,
                             Response.ErrorListener errorListener) {
