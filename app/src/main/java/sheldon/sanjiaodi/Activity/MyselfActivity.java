@@ -69,8 +69,7 @@ public class MyselfActivity extends Activity implements View.OnClickListener{
                 break;
             case R.id.btn_myself_college:
                 i.putExtra("title", "学院");
-//                i.putExtra("content", collegeText.getText().toString());
-                i.putExtra("content", "信息学院");
+                i.putExtra("content", collegeText.getText().toString());
                 i.setClass(this, MyselfAlertActivity.class);
                 startActivity(i);
                 break;

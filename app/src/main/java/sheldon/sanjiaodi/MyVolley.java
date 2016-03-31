@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.util.LruCache;
 import android.widget.ImageView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -242,6 +243,23 @@ public class MyVolley {
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }
 
+    public static void getVerifyCode(Context context, String uid, String phone,
+                                     Response.Listener callback,
+                                     Response.ErrorListener errorListener) {
+        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/verify/sendVerify_api/config/config/account/"
+               + phone + "/uid/" + uid + ".html";
+        SJDLog.i("getVerifyCodeVolley", url);
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                baseUrl + url,
+                callback,
+                errorListener);
+        request.setRetryPolicy(new DefaultRetryPolicy(5000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MyVolley.getInstance(context).addToRequestQueue(request);
+    }
+
     public void uploadImage(String url, String location,
                             Response.Listener callback,
                             Response.ErrorListener errorListener) {
@@ -252,5 +270,6 @@ public class MyVolley {
         Request request = new UploadRequest(url, image, callback, errorListener) ;
         addToRequestQueue(request) ;
     }
+
 
 }
