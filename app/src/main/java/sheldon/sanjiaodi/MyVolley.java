@@ -33,7 +33,7 @@ public class MyVolley {
     private ImageLoader mImageLoader;
     private static Context mCtx;
 
-    private static String baseUrl = "";
+    private static String baseUrl = "http://sanjiaodi.cn/sjd_phone/";
 
     private MyVolley(Context context) {
         mCtx = context;
@@ -162,7 +162,7 @@ public class MyVolley {
     public static void login(Context context, String username, String password,
                              Response.Listener<JSONObject> callback,
                              Response.ErrorListener errorListener) {
-        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/member/login_api/name/"
+        String url = "index.php?s=/ucenter/member/login_api/name/"
                 + username + "/password/" + password + ".html";
         SJDLog.i("login_url", url);
         MyVolley.getInstance(context).getJson(url, callback, errorListener);
@@ -171,7 +171,7 @@ public class MyVolley {
 
     public static void getContent(Context context, String uid, Response.Listener callback,
                                   Response.ErrorListener errorListener) {
-        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/event/index/index_api_new/uid/"
+        String url = "index.php?s=/event/index/index_api_new/uid/"
                 + uid + ".html";
         SJDLog.i("MyVolley", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
@@ -179,7 +179,7 @@ public class MyVolley {
 
     public static void getCollection(Context context, String uid, Response.Listener callback,
                                   Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/myevent_api/lora/collect/uid/"
+        String url = "index.php?s=/event/index/myevent_api/lora/collect/uid/"
                 + uid + ".html";
         SJDLog.i("MyVolley", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
@@ -188,7 +188,7 @@ public class MyVolley {
     public static void getAttend(Context context, String uid, Response.Listener callback,
                                      Response.ErrorListener errorListener) {
         //TODO 应该正常，待测试
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/myevent_api/lora/attend/uid/"
+        String url = "index.php?s=/event/index/myevent_api/lora/attend/uid/"
                 + uid + ".html";
         SJDLog.i("MyVolley", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
@@ -197,7 +197,7 @@ public class MyVolley {
     public static void collect(Context context, String uid, String id,
                                Response.Listener callback,
                                Response.ErrorListener errorListener) {
-        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/event/index/doCollect_api/event_id/"
+        String url = "index.php?s=/event/index/doCollect_api/event_id/"
                + id + "/uid/" + uid + ".html";
         SJDLog.i("Volley_collect", url);
         MyVolley.getInstance(context).getString(url, callback, errorListener);
@@ -206,21 +206,21 @@ public class MyVolley {
     public static void unCollect(Context context, String uid, String id,
                                Response.Listener callback,
                                Response.ErrorListener errorListener) {
-        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/event/index/unCollect_api/event_id/"
+        String url = "index.php?s=/event/index/unCollect_api/event_id/"
                 + id + "/uid/" + uid + ".html";
         SJDLog.i("Volley_collect", url);
         MyVolley.getInstance(context).getString(url, callback, errorListener);
     }
     public static void getTag(Context context, Response.Listener callback,
                               Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/hottag/num/8.html";
+        String url = "index.php?s=/event/index/hottag/num/8.html";
         SJDLog.i("getTagVolley", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
     }
 
     public static void getHotActivity(Context context, String uid, Response.Listener callback,
                                       Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/gethotactivity/uid/"
+        String url = "index.php?s=/event/index/gethotactivity/uid/"
                 + uid + ".html";
         SJDLog.i("getHotActivityVolley", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
@@ -228,7 +228,7 @@ public class MyVolley {
 
     public static void changePassword(Context context, String uid, String oldPassword, String newPassword,
                                       Response.Listener callback, Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/verify/doChangePassword_api/uid/"
+        String url = "index.php?s=/ucenter/verify/doChangePassword_api/uid/"
                 + uid + "/old_password/" + oldPassword + "/new_password/" + newPassword + ".html";
         SJDLog.i("changePasswordVolley", url);
         MyVolley.getInstance(context).getString(url, callback, errorListener);
@@ -237,7 +237,7 @@ public class MyVolley {
     public static void getActivityByTag(Context context, String id, String uid,
                                         Response.Listener callback,
                                         Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/event/index/getByTag/tag_id/"
+        String url = "index.php?s=/event/index/getByTag/tag_id/"
                 + id + "/uid/" + uid + ".html";
         SJDLog.i("getActivityByTag", url);
         MyVolley.getInstance(context).getArray(url, callback, errorListener);
@@ -246,7 +246,7 @@ public class MyVolley {
     public static void getVerifyCode(Context context, String uid, String phone,
                                      Response.Listener callback,
                                      Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/verify/sendVerify_api/config/config/account/"
+        String url = "index.php?s=/ucenter/verify/sendVerify_api/config/config/account/"
                + phone + "/uid/" + uid + ".html";
         SJDLog.i("getVerifyCodeVolley", url);
         StringRequest request = new StringRequest(
@@ -262,7 +262,7 @@ public class MyVolley {
 
     public static void getConfirm(Context context, String uid, String phone, String code,
                                   Response.Listener callback, Response.ErrorListener errorListener) {
-        String url = "http://www.sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/verify/checkVerify_api/uid/"
+        String url = "index.php?s=/ucenter/verify/checkVerify_api/uid/"
                 + uid + "/mobile/" + phone + "/verify_num/" + code + ".html";
         SJDLog.i("getComfirmVolley", url);
         MyVolley.getInstance(context).getString(url, callback, errorListener);
@@ -271,7 +271,7 @@ public class MyVolley {
     public static void changeInfo(Context context, int id, String uid, String content,
                                   Response.Listener callback, Response.ErrorListener errorListener) {
         //id 2邮箱，3学院，4专业
-        String url = "http://sanjiaodi.cn/sjd_phone/index.php?s=/ucenter/member/saveinfo_api/id/"
+        String url = "index.php?s=/ucenter/member/saveinfo_api/id/"
                 + id + "/uid/" + uid + "/content/" + content + ".html";
         SJDLog.i("changeInfoVolley", url);
         MyVolley.getInstance(context).getJson(url, callback, errorListener);
