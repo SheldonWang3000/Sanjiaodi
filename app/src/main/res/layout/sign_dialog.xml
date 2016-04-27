@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@android:color/black"
+        android:padding="15dp"
+        android:lines="2"
+        android:ellipsize="end"
+        android:text="活动名称大概有点太长了：Mini-TED以演讲传递学问的平台快来展示你的演讲水平与才华"/>
+    <TextView
+        android:id="@+id/dialog_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        android:text="活动时间：2016-05-06至2016-05-07"/>
+
+    <EditText
+        android:id="@+id/sign_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:hint="联系方式"/>
+</LinearLayout>

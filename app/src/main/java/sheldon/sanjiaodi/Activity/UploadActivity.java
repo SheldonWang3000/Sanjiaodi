@@ -1,9 +1,9 @@
 package sheldon.sanjiaodi.Activity;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -23,7 +23,7 @@ import sheldon.sanjiaodi.MyVolley;
 import sheldon.sanjiaodi.R;
 import sheldon.sanjiaodi.SJDLog;
 
-public class UploadActivity extends ActionBarActivity {
+public class UploadActivity extends Activity {
 
     private Bitmap bitmap;
     String photoPath;

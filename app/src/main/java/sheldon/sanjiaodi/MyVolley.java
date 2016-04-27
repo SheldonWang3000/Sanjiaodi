@@ -277,6 +277,14 @@ public class MyVolley {
         MyVolley.getInstance(context).getJson(url, callback, errorListener);
     }
 
+    public static void sign(Context context, String uid, String id, String phone,
+                            Response.Listener callback, Response.ErrorListener errorListener) {
+        String url = "index.php?s=/event/index/doSign_api/uid/" + uid + "/event_id/" + id
+                + "/phone/" + phone + ".html";
+        SJDLog.i("sign", url);
+        MyVolley.getInstance(context).getString(url, callback, errorListener);
+    }
+
     public void uploadImage(String url, String location,
                             Response.Listener callback,
                             Response.ErrorListener errorListener) {

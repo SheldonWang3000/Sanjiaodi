@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">三角地~</string>
+    <string name="app_name">三角地</string>
     <string name="error_invalid_password">请输入密码</string>
     <string name="error_field_required">请输入用户名</string>
     <string name="bottom_button_0_text">活动</string>
