@@ -35,8 +35,6 @@
     <string name="info_office_phone_text">服务应急电话</string>
     <string name="info_office_text">行政服务</string>
     <string name="info_office_title">信息服务</string>
-    <string name="title_activity_info_sample">123</string>
-    <string name="title_activity_phone">1234</string>
     <string name="title_activity_metro">MetroActivity</string>
     <string name="info_metro_title">地铁信息</string>
     <string name="info_metro_line_text">地铁线路</string>

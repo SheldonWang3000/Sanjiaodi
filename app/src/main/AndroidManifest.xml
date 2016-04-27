@@ -39,15 +39,11 @@
         <activity android:name=".Activity.MetroActivity" />
         <activity android:name=".Activity.AttendActivity" />
         <activity android:name=".Activity.MyselfActivity" />
-        <activity
-            android:name=".Activity.PhoneActivity"
-            android:label="@string/title_activity_phone" />
+        <activity android:name=".Activity.PhoneActivity"/>
         <activity android:name=".Activity.MyselfAlertActivity" />
-        <activity
-            android:name=".Activity.TagActivity"
-            android:label="@string/title_activity_tag" />
+        <activity android:name=".Activity.TagActivity" />
         <activity android:name=".Activity.PasswordActivity" />
-        <activity android:name=".Activity.UploadActivity"></activity>
+        <activity android:name=".Activity.UploadActivity"/>
     </application>
 
 </manifest>
